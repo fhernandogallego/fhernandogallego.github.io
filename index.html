@@ -635,5 +635,37 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script>
+            document.getElementById('send-button').onclick = function() {
+                const userMessage = document.getElementById('input-box').value;
+                if (userMessage.trim() === '') return; // No enviar mensajes vacíos
+
+                // Mostrar el mensaje del usuario en el chatbox
+                document.getElementById('chat-box').innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
+
+                // Enviar el mensaje al backend
+                fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ user_id: '1', text: userMessage }), // Puedes cambiar user_id si es necesario
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Mostrar la respuesta del bot en el chatbox
+                    document.getElementById('chat-box').innerHTML += `<p><strong>Bot:</strong> ${data.response}</p>`;
+                    // Limpiar el campo de entrada
+                    document.getElementById('input-box').value = '';
+                    // Desplazar el chatbox hacia abajo
+                    document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            };
+        </script>
+
+
     </body>
 </html>
