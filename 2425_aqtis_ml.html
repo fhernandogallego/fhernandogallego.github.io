@@ -1,169 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>2425_aqtis_ml README</title>
-  <!-- Enlace a GitHub Markdown CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css" integrity="sha512-Y5bTObQWf9kgcIVIgR+ZxBjU8pLCJPuoLGa1zMRAGuBmWi2mM6+xEsyq3UJn6FKK4/R0VBU/PixCz1Dnhq0dgw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-    /* Opcional: Ajusta los márgenes para que el contenido no ocupe todo el ancho */
-    body {
-      margin: 2rem;
-      background-color: #fff;
-    }
-    .markdown-body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
-      border: 1px solid #e1e4e8;
-      border-radius: 6px;
-      background-color: #ffffff;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>2425 Aqtis ML Project</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
 </head>
-
 <body>
-<main class="markdown-body">
 
-  <h1>2425_aqtis_ml</h1>
-  <h2>📊 Cryptocurrency Investment Analysis</h2>
+<div class="container" id="markdown-content"></div>
 
-  <h3>📖 Description</h3>
-  <p>
-    The main goal of this project is to predict the value movement of various cryptocurrencies. We use an Excel file (<code>trades_with_features_juego_V3.xlsx</code>) containing data from 2020 to 2024 for the selected cryptocurrencies. Along with the historical data, the Excel file includes 10 explanatory variables, which help in predicting the response variable “profit” through a linear regression model. This linear regression approach was chosen for three reasons:
-  </p>
-  <ol>
-    <li><strong>Ease of Interpretation:</strong> It is straightforward for potential investors to understand.</li>
-    <li><strong>Simplicity and Efficiency:</strong> It is computationally light.</li>
-    <li><strong>Lower Risk of Overfitting:</strong> Compared to more complex models, linear regression typically overfits less.</li>
-  </ol>
-  <p>
-    Still, it would be beneficial to compare this model against decision trees or other advanced machine learning techniques to validate its effectiveness. The Excel file also compares profits using both a <strong>fixed investment</strong> strategy (investing €100 on every transaction) and a <strong>variable investment</strong> strategy, in which the profit estimate dictates the investment amount. Specifically, there is a lower threshold below which there is no investment, and a higher threshold above which €200 is invested; if the estimated profit falls between those thresholds, €100 is invested. This approach invests less when profits seem low or negative and invests more when profits seem high, thus reducing risk and increasing returns. In every case studied, this model has outperformed fixed investment in terms of profitability.
-  </p>
-  <p>
-    A simplified version of the model was also tested by removing statistically insignificant variables. With large datasets, removing these variables did not significantly affect the model’s performance. However, when smaller datasets were used, the simplified model often resulted in lower profits.
-  </p>
-  <p>
-    The analysis was performed both on the complete set of cryptocurrencies (see the "Todas varios modelos" sheet in the Excel file) and on specific cryptocurrencies as well as on cryptocurrency narratives (groups of cryptocurrencies). After the analysis, all results and detailed explanations—including variable definitions, profit and investment data, and the rationale behind selecting certain cryptocurrencies and narratives—were compiled into a LaTeX article.
-  </p>
+<script>
+    fetch('2425_aqtis_ml/readme.md')
+        .then(response => response.text())
+        .then(markdown => {
+            const md = window.markdownit({html: true});
+            document.getElementById('markdown-content').innerHTML = md.render(markdown);
+        })
+        .catch(error => {
+            document.getElementById('markdown-content').innerHTML = '<p>Error loading markdown file.</p>';
+            console.error('Error:', error);
+        });
+</script>
 
-  <h3>📊 Results</h3>
-  <p>
-    When evaluating profits, it is essential to consider the amount of money invested. Although this model yields higher returns, in most cases it also <strong>requires less capital</strong>, leading to an even higher profit percentage. In the case of all cryptocurrencies combined, for example, only <strong>84%</strong> of the capital used in the fixed-investment approach was required to achieve a <strong>43%</strong> higher profit. This is due to investing less when profit estimates are low or negative, and investing more when profit estimates are high. Overall, the return on investment when using the model typically ranges between <strong>6%–7%</strong>, reaching up to <strong>8.64%</strong> net profit, whereas the fixed-investment strategy usually produces <strong>3%–4%</strong> returns, with a maximum of <strong>5.59%</strong> net profit. All investments are bullish, so if the fixed-investment approach is profitable, the model-based strategy tends to be even more so.
-  </p>
-
-  <p>
-    <img src="images/Imagen3.png" alt="Imagen 3" width="500">
-    <img src="images/Imagen4.png" alt="Imagen 4" width="500">
-  </p>
-
-  <p>
-    The figures above illustrate these outcomes. The first shows profits/losses for each profit range, highlighting how smaller or negative expected profits lead to lower investment amounts. The second graph compares the original model, the simplified model, and the fixed-investment strategy. These results are drawn from the “Todas varios modelos” sheet, which uses a large dataset—hence the substantial profits and minimal difference between the original and simplified models. Similar figures were generated for all cryptocurrencies and narratives under analysis.
-  </p>
-  <p>
-    From a statistical viewpoint, the original model generally outperforms the simplified version (with Bitcoin and “Mod late” being exceptions). Additionally, smaller datasets usually produce better metrics—correlation coefficients, R^2, adjusted R^2—and lower error. This may be because each cryptocurrency responds differently to the explanatory variables. In particular, single-cryptocurrency analyses tend to perform better than medium-sized or large narratives, with the full set of cryptocurrencies having the least favorable metrics, as shown in the following table:
-  </p>
-
-  <p>
-    <img src="images/Imagen23.png" alt="Imagen 23">
-  </p>
-
-  <h3>🏁 Conclusions</h3>
-  <p>
-    Overall, the results confirm that this model is valid for all the individual cryptocurrencies and groups of cryptocurrencies studied, indicating that a linear regression approach can effectively estimate profits across different cryptocurrencies. However, removing statistically insignificant variables only proves efficient for large datasets. It does not necessarily produce better forecasts but does simplify the model and reduce unnecessary computational costs.
-  </p>
-  <p>
-    Lastly, it is clear that each cryptocurrency is influenced differently by the explanatory variables, which is evident for three reasons:
-  </p>
-  <ol>
-    <li><strong>Different Coefficients:</strong> The regression coefficients vary across different models.</li>
-    <li><strong>Better Single-Coin Statistics:</strong> Models focusing on a single cryptocurrency generally show better statistical performance.</li>
-    <li><strong>Variable-Specific Importance:</strong> When simplifying the model, the variables removed for one model are not always removed for others, indicating their relative importance differs across cryptocurrencies.</li>
-  </ol>
-
-  <h3>🔮 How to Continue</h3>
-  <p>
-    Below are some future improvements to make the project more comprehensive and professional:
-  </p>
-  <ol>
-    <li><strong>Add More References:</strong> Incorporate additional academic or industry sources related to cryptocurrencies or algorithmic trading.</li>
-    <li><strong>Refine the Charts:</strong> Provide clearer axis labels and better descriptions in all figures. Converting Excel charts to TikZ could also enhance visual quality.</li>
-    <li><strong>Explore Other Models:</strong> Consider building a decision tree, neural network, or time-series model to compare with linear regression.</li>
-    <li><strong>Statistical Significance Testing:</strong> Demonstrate that the differences between the model-based strategy and fixed investment are statistically significant by using appropriate tests.</li>
-  </ol>
-
-  <h3>📂 Project Structure</h3>
-  <pre>
-│── images                                                  # Folder with charts and images used in the analysis  
-│── 3Modelos.ipynb                                          # Jupyter Notebook with analysis, statistics, and visualizations  
-│── Análisis de inversiones en criptomonedas.tex            # LaTeX document for the article  
-│── Análisis_de_inversiones_en_criptomonedas_2020_2024.pdf  # PDF version of the article  
-│── Datos_estadísticos.xlsx                                 # Statistical data used in the analysis  
-│── trades_with_features_juego_V3.xlsx                      # Transaction data and models  
-│── Referencias.docx                                        # Document with potentially useful references  
-│── README.md                                               # This file  
-  </pre>
-
-  <h3>🛠 Requirements and Dependencies</h3>
-  <p>To run the Python scripts, make sure you have the following packages installed:</p>
-  <pre>
-pip install pandas numpy matplotlib scikit-learn jupyter
-  </pre>
-
-  <h3>🚀 How to Use</h3>
-  <ul>
-    <li>
-      <strong>Open <code>trades_with_features_juego_V3.xlsx</code></strong> to explore the data.<br>
-      This Excel file, provided by Francisco, includes the historical data of various cryptocurrencies.
-    </li>
-    <li>
-      <strong>Run <code>3Modelos.ipynb</code></strong> in Jupyter Notebook to analyze the data.<br>
-      This script calculates the profits under the same model as in the Excel file, as well as for the fixed investment and the simplified model. The simplified model uses a backward elimination process to remove non-significant variables at the 5% level, comparing the results with the original model. Statistics like R^2 and adjusted R^2 are then exported to <code>Datos_estadísticos.xlsx</code>. Note that not all variables (e.g., <code>returns_rolling_zscore_yesterday</code>) are always used, and the thresholds for higher or lower investment may differ (e.g., 2%–4% vs. 3%–5%).
-    </li>
-    <li>
-      <strong>Review <code>Datos_estadísticos.xlsx</code></strong>, which gathers statistical outcomes from different models applied to various cryptocurrencies and narratives.
-    </li>
-    <li>
-      <strong>Open <code>Análisis de inversiones en criptomonedas.tex</code></strong> (or the PDF version) for the complete analysis.
-    </li>
-    <li>
-      <strong>Check the images</strong> in the <code>images</code> folder. They are used in the article and are either generated in Excel or by the <code>3Modelos</code> script.
-    </li>
-    <li>
-      <strong>Refer to <code>Referencias.docx</code></strong> for additional literature and resources about cryptocurrencies and trading.
-    </li>
-  </ul>
-
-  <h3>📊 Data Sources</h3>
-  <ul>
-    <li><strong><code>trades_with_features_juego_V3.xlsx</code></strong>: Contains detailed transaction information with extra features.</li>
-    <li><strong><code>Datos_estadísticos.xlsx</code></strong>: Consolidated statistics (e.g., R^2, adjusted R^2) for various cryptocurrency investment models.</li>
-  </ul>
-
-  <h3>📸 Visualizations</h3>
-  <p>
-    All images used in this analysis are located in the <strong>images</strong> folder. They are sorted according to their order of appearance in the article.
-  </p>
-
-  <h3>🏆 Author</h3>
-  <p>Mikel Izkue Urdaniz</p>
-
-  <hr>
-
-  <h2>Images Required for the README</h2>
-  <p>
-    In order for the README to display correctly after moving the project, you should include at least the following images (located in the <code>images</code> folder):
-  </p>
-  <ol>
-    <li><code>Imagen3.png</code></li>
-    <li><code>Imagen4.png</code></li>
-    <li><code>Imagen23.png</code></li>
-  </ol>
-  <p>
-    If there are any additional images referenced by name in the LaTeX article or PDF (<code>Análisis_de_inversiones_en_criptomonedas_2020_2024.pdf</code>), be sure to include them as well so that all visual references are intact.
-  </p>
-</main>
 </body>
 </html>
