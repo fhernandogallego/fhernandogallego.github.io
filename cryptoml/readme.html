@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>2425 Aqtis ML Project</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
 </head>
 <body>
@@ -11,7 +11,7 @@
 <div class="container" id="markdown-content"></div>
 
 <script>
-    fetch('2425_aqtis_ml/readme.md')
+    fetch('readme.md')
         .then(response => response.text())
         .then(markdown => {
             const md = window.markdownit({html: true});
