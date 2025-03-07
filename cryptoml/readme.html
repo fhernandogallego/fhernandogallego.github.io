@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <title>2425 Aqtis ML Project</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown.min.css">
     <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+    <style>
+        body {
+            background-color: #f7f8fa;
+            padding: 20px;
+        }
+        .markdown-body {
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 40px;
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 <body>
-
-<div class="container" id="markdown-content"></div>
+<div class="markdown-body" id="markdown-content"></div>
 
 <script>
     fetch('readme.md')
@@ -22,6 +36,5 @@
             console.error('Error:', error);
         });
 </script>
-
 </body>
 </html>
