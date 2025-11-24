@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 900 160"
+     role="img"
+     aria-label="Applied Intelligence Tech Ventures Capital">
+  <style>
+    .logo-icon {
+      fill: #ffffff;
+    }
+    .logo-text {
+      font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, "Helvetica Neue", Arial, sans-serif;
+      fill: #ffc800;
+      font-weight: 700;
+    }
+  </style>
+
+  <!-- Icono A blanco -->
+  <g class="logo-icon" transform="translate(20,20) scale(1.4)">
+    <path d="M10 90 L50 10 L90 90 L74 90 L50 40 L26 90 Z" />
+  </g>
+
+  <!-- Texto aumentado -->
+  <g class="logo-text" font-size="68">
+    <text x="200" y="70">Applied Intelligence</text>
+    <text x="200" y="140">Tech Ventures Capital</text>
+  </g>
+</svg>
