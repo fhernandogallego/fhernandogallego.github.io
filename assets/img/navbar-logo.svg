@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      viewBox="0 0 900 160"
      role="img"
-     aria-label="Applied Intelligence Tech Ventures Capital">
+     aria-label="AITV">
   <style>
     .logo-icon {
       fill: #ffffff;
@@ -21,7 +21,7 @@
 
   <!-- Texto aumentado -->
   <g class="logo-text" font-size="68">
-    <text x="200" y="70">Applied Intelligence</text>
-    <text x="200" y="140">Tech Ventures Capital</text>
+    <text x="200" y="70">AI</text>
+    <text x="200" y="140">TVC</text>
   </g>
 </svg>
