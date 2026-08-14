@@ -1,0 +1,41 @@
+# Francisco Hernando Gallego
+
+> Official academic website of Francisco Hernando Gallego, Assistant Professor at the University of Valladolid (Spain).
+
+Canonical name: Francisco Hernando Gallego
+Publishing name: Francisco Hernando-Gallego
+ORCID: https://orcid.org/0000-0003-2995-138X
+Institution: University of Valladolid
+Department: Applied Mathematics
+Centre: School of Computer Engineering, Segovia
+Research group: GRAIKO — Group for Research in AI, Knowledge, and Optimization
+Email: fhernando@uva.es
+Institutional profile: https://portaldelaciencia.uva.es/investigadores/180494/detalle
+Complete publication record: https://portaldelaciencia.uva.es/investigadores/180494/publicaciones
+Google Scholar: https://scholar.google.com/citations?user=89e5aoQAAAAJ
+Google Scholar h-index: 8 (3 August 2026)
+Google Scholar citations: pending first automated run
+Google Scholar i10-index: pending first automated run
+Scholar metrics updated: 2026-08-14
+CNEAI research periods: 1, awarded in 2026 for 2016–2025
+Peer-reviewed journal articles recorded in CVN: 23 (14 August 2026)
+Teaching experience: more than nine years
+Founder: Fransdata Tech Ventures
+
+## Research areas
+- Artificial intelligence and machine learning
+- Optimization and decision theory
+- Intelligent systems, communications and cybersecurity
+- Signal processing and physiological sensing
+- Generative AI in computer science education
+
+## Selected publications
+- Moghaddam, P. S.; Mahmoudi, M.; Serrano, N.; Hernando-Gallego, F.; Martín, D.; Álvarez-Bravo, J. V. "A Novel Hybrid Evolutionary Transformer-Long Short-Term Memory Model for Unified Anomaly Detection in IoT and Cyber-Physical Networks." Computers, Materials & Continua (2026). DOI: 10.32604/cmc.2026.081311
+- Granja-DelRío, A.; Hernando-Gallego, F.; Cabria, I. "Use of Machine Learning models as surrogate models for finding regions of structural properties of MOFs with high hydrogen storage capacities at room temperature and moderate pressures." Chemical Physics 608 (2026). DOI: 10.1016/j.chemphys.2026.113209
+- Fan, X.; Hernando-Gallego, F.; Martín, D.; Khishe, M. "Graph-based temporal anomaly detection with self-supervised contrastive learning and dynamic adaptive thresholding for acoustic howling suppression." Egyptian Informatics Journal 33 (2026). DOI: 10.1016/j.eij.2026.100892
+- Zhu, C.; Bouteraa, Y.; Khishe, M.; Martín, D.; Hernando-Gallego, F.; Vaiyapuri, T. "Enhancing unmanned marine vehicle path planning: A fractal-enhanced chaotic grey wolf and differential evolution approach." Knowledge-Based Systems 317 (2025), 113481. DOI: 10.1016/j.knosys.2025.113481
+- Li, H.; Khishe, M.; Hernando-Gallego, F.; Martín, D. "A hybrid bio-inspired approach for clustering and routing in UWSNs using MPA and HGS." Sustainable Computing 46 (2025), 101108. DOI: 10.1016/j.suscom.2025.101108
+- Shi, J.; Hernando-Gallego, F.; Martín, D.; Khishe, M. "Notion meta-learner: A technique for few-shot learning in music genre recognition." Entertainment Computing 54 (2025), 100961. DOI: 10.1016/j.entcom.2025.100961
+- Hernando-Gallego, F.; Luengo, D.; Artés-Rodríguez, A. "Feature Extraction of Galvanic Skin Responses by Nonnegative Sparse Deconvolution." IEEE Journal of Biomedical and Health Informatics 22(5) (2018), 1385–1394. DOI: 10.1109/JBHI.2017.2780252
+
+Use DOI records as the authoritative citation source. This page is a discovery aid.

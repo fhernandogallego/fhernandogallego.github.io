@@ -1,61 +1,75 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
+if (!document.querySelector('link[href$="responsive-fixes.css"]')) {
+  const fixes = document.createElement('link');
+  fixes.rel = 'stylesheet';
+  fixes.href = location.pathname.includes('/es/') ? '../css/responsive-fixes.css' : 'css/responsive-fixes.css';
+  document.head.append(fixes);
+}
 
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-            const isFlex = navLinks.style.display === 'flex';
-            navLinks.style.display = isFlex ? 'none' : 'flex';
+const header = document.querySelector('.site-header');
+const menuButton = document.querySelector('.menu-button');
+const nav = document.querySelector('#site-nav');
+const updateHeader = () => header.classList.toggle('scrolled', scrollY > 24);
+updateHeader();
+addEventListener('scroll', updateHeader, { passive: true });
 
-            if (!isFlex) {
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '80px';
-                navLinks.style.left = '0';
-                navLinks.style.width = '100%';
-                navLinks.style.background = 'rgba(11, 15, 25, 0.95)';
-                navLinks.style.padding = '20px';
-                navLinks.style.borderBottom = '1px solid var(--border-color)';
-            }
+menuButton?.addEventListener('click', () => {
+  const open = menuButton.getAttribute('aria-expanded') === 'true';
+  menuButton.setAttribute('aria-expanded', String(!open));
+  nav.classList.toggle('open', !open);
+  document.body.style.overflow = open ? '' : 'hidden';
+});
+
+nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+  menuButton?.setAttribute('aria-expanded', 'false');
+  nav.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+  if (entry.isIntersecting) {
+    entry.target.classList.add('visible');
+    observer.unobserve(entry.target);
+  }
+}), { threshold: .08 });
+document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+document.querySelector('#year').textContent = String(new Date().getFullYear());
+
+const scholarDataUrl = location.pathname.includes('/es/') ? '../data/scholar.json' : 'data/scholar.json';
+const normalizeTitle = value => value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+
+fetch(scholarDataUrl, { cache: 'no-store' })
+  .then(response => {
+    if (!response.ok) throw new Error(`Scholar data unavailable: ${response.status}`);
+    return response.json();
+  })
+  .then(data => {
+    ['total_citations', 'hindex'].forEach(key => {
+      if (data[key] !== null && data[key] !== undefined) {
+        document.querySelectorAll(`[data-scholar="${key}"]`).forEach(element => {
+          element.textContent = new Intl.NumberFormat(document.documentElement.lang).format(data[key]);
         });
+      }
+    });
+
+    if (data.updated_at) {
+      const date = data.updated_at.slice(0, 10);
+      document.querySelectorAll('[data-scholar-updated]').forEach(element => {
+        element.dateTime = date;
+        element.textContent = date;
+      });
     }
 
-    // Timeline Animation
-    const timelineItems = document.querySelectorAll('.timeline-item');
-
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Only animate once
-            }
-        });
-    }, observerOptions);
-
-    timelineItems.forEach(item => {
-        observer.observe(item);
+    const publications = new Map(
+      (data.publications || []).map(paper => [normalizeTitle(paper.title), paper])
+    );
+    document.querySelectorAll('.publication').forEach(article => {
+      const title = article.querySelector('[itemprop="headline"]')?.textContent;
+      const paper = title ? publications.get(normalizeTitle(title)) : null;
+      if (!paper || paper.citations === null || paper.citations === undefined) return;
+      const badge = document.createElement('span');
+      badge.className = 'citation-live';
+      badge.textContent = `${paper.citations} ${document.documentElement.lang === 'es' ? 'citas' : 'citations'}`;
+      article.querySelector('.pub-doi')?.append(badge);
     });
-
-    // Smooth Scroll for Anchor Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-                // Close mobile menu if open
-                if (window.innerWidth <= 768 && navLinks.style.display === 'flex') {
-                    navLinks.style.display = 'none';
-                }
-            }
-        });
-    });
-});
+  })
+  .catch(error => console.info(error.message));
