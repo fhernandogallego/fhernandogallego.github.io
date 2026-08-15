@@ -3,6 +3,27 @@ document.querySelector('#year').textContent = String(new Date().getFullYear());
 const spanish = document.documentElement.lang === 'es';
 const scholarDataUrl = '/data/scholar.json';
 const normalizeTitle = value => value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const publicationList = document.querySelector('.publication-list');
+const publicationSort = document.querySelector('#publication-sort');
+
+const sortPublications = order => {
+  if (!publicationList) return;
+  const rows = [...publicationList.querySelectorAll('.publication')];
+  rows.sort((left, right) => {
+    const primary = order === 'year'
+      ? Number(right.dataset.year || 0) - Number(left.dataset.year || 0)
+      : Number(right.dataset.citations || 0) - Number(left.dataset.citations || 0);
+    if (primary) return primary;
+    const secondary = order === 'year'
+      ? Number(right.dataset.citations || 0) - Number(left.dataset.citations || 0)
+      : Number(right.dataset.year || 0) - Number(left.dataset.year || 0);
+    if (secondary) return secondary;
+    return left.textContent.localeCompare(right.textContent, document.documentElement.lang);
+  });
+  rows.forEach(row => publicationList.append(row));
+};
+
+publicationSort?.addEventListener('change', event => sortPublications(event.target.value));
 
 fetch(scholarDataUrl, { cache: 'no-store' })
   .then(response => {
@@ -31,11 +52,13 @@ fetch(scholarDataUrl, { cache: 'no-store' })
         element.textContent = date;
       });
     }
-    const publications = new Map((data.publications || []).map(paper => [normalizeTitle(paper.title), paper]));
+    const publicationsById = new Map((data.publications || []).map(paper => [paper.author_pub_id, paper]));
+    const publicationsByTitle = new Map((data.publications || []).map(paper => [normalizeTitle(paper.title), paper]));
     document.querySelectorAll('.publication').forEach(publication => {
       const title = publication.querySelector('[itemprop="headline"]')?.textContent;
-      const paper = title ? publications.get(normalizeTitle(title)) : null;
+      const paper = publicationsById.get(publication.dataset.scholarId) || (title ? publicationsByTitle.get(normalizeTitle(title)) : null);
       if (!paper || paper.citations === null || paper.citations === undefined) return;
+      publication.dataset.citations = paper.citations;
       let citations = publication.querySelector('[data-scholar-citations]');
       if (!citations) {
         citations = document.createElement('span');
@@ -45,5 +68,6 @@ fetch(scholarDataUrl, { cache: 'no-store' })
       }
       citations.textContent = `${paper.citations} ${spanish ? 'citas' : 'citations'}`;
     });
+    sortPublications(publicationSort?.value || 'citations');
   })
   .catch(error => console.info(error.message));

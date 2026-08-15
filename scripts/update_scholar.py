@@ -231,17 +231,25 @@ def validate_snapshot(snapshot: dict, previous: dict | None) -> None:
 
 def render_publications_html(publications: list[dict], language: str) -> str:
     rows = []
-    for paper in publications:
+    ordered = sorted(
+        publications,
+        key=lambda paper: (paper["citations"], as_int(paper["year"]), paper["title"].casefold()),
+        reverse=True,
+    )
+    for paper in ordered:
         title = html.escape(paper["title"])
         year = html.escape(paper["year"] or "—")
+        data_year = as_int(paper["year"])
         venue = html.escape(paper["venue"])
         url = html.escape(scholar_publication_url(paper), quote=True)
         detail_url = html.escape(f"publications/{paper['slug']}/", quote=True)
+        publication_id = html.escape(paper.get("author_pub_id", ""), quote=True)
         citations = paper["citations"]
         metadata = f"{venue} · " if venue else ""
         scholar_label = "Google Scholar"
         rows.append(
-            '        <li class="publication" itemscope itemtype="https://schema.org/ScholarlyArticle">'
+            f'        <li class="publication" data-year="{data_year}" data-citations="{citations}" '
+            f'data-scholar-id="{publication_id}" itemscope itemtype="https://schema.org/ScholarlyArticle">'
             f'<span class="pub-year" itemprop="datePublished">{year}</span><div>'
             f'<a class="pub-title" itemprop="url" href="{detail_url}"><span itemprop="headline">{title}</span></a>'
             f'<p class="pub-doi">{metadata}<a href="{url}">{scholar_label}</a>'
@@ -430,7 +438,7 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{html.escape(title)} — Francisco Hernando Gallego</title>
+  <title>{html.escape(title)} — Francisco Hernando-Gallego</title>
   <meta name="description" content="{html.escape(description, quote=True)}">
   <meta name="robots" content="index,follow,max-snippet:-1">
   <link rel="canonical" href="{canonical}">
