@@ -102,6 +102,8 @@ footer { padding: 24px 0 36px; color: var(--muted); border-top: 1px solid var(--
 .archive { padding: 36px 0 8px; }
 .year-group { display: grid; grid-template-columns: 90px 1fr; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--line); }
 .year-group h2 { color: var(--muted); font: 1rem Arial, sans-serif; }
+.project-group { padding: 26px 0; border-bottom: 1px solid var(--line); }
+.project-group h2 { margin: 0 0 22px; color: var(--muted); font: 1rem Arial, sans-serif; }
 .archive-list { margin: 0; padding: 0; list-style: none; }
 .archive-list li { padding: 0 0 24px; }
 .archive-list li:last-child { padding-bottom: 0; }

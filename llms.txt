@@ -38,7 +38,8 @@ Founder: Fransdata Tech Ventures
 
 ## Academic activity
 - Supervised bachelor's theses (16, grouped by year): https://www.fransdata.com/supervision/
-- Research, knowledge-transfer and teaching projects (6 current or recent): https://www.fransdata.com/projects/
+- Research, knowledge-transfer and teaching projects (9): https://www.fransdata.com/projects/
+- Project types: 1 competitive European R&D project, 4 R&D contracts or public-sector agreements, and 4 teaching innovation projects (PID).
 - Spanish versions: https://www.fransdata.com/es/supervision/ and https://www.fransdata.com/es/projects/
 - Source for supervision and projects: official CVN generated 14 August 2026
 
