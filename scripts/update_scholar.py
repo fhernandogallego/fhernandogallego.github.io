@@ -540,8 +540,23 @@ def update_public_pages(snapshot: dict) -> None:
             rf"\g<1>{updated_at}\g<2>{updated_at}\g<3>",
             text,
         )
+        text = re.sub(
+            r'(<strong data-publication-count>).*?(</strong>)',
+            rf"\g<1>{len(snapshot['publications'])}\g<2>",
+            text,
+        )
         publications_html = render_publications_html(snapshot["publications"], language)
         path.write_text(replace_publication_block(text, publications_html), encoding="utf-8")
+
+    for relative in ("supervision/index.html", "projects/index.html", "es/supervision/index.html", "es/projects/index.html"):
+        path = ROOT / relative
+        text = path.read_text(encoding="utf-8")
+        text = re.sub(
+            r'(<strong data-publication-count>).*?(</strong>)',
+            rf"\g<1>{len(snapshot['publications'])}\g<2>",
+            text,
+        )
+        path.write_text(text, encoding="utf-8")
 
     llms_path = ROOT / "llms.txt"
     llms = llms_path.read_text(encoding="utf-8")

@@ -54,6 +54,9 @@ fetch(scholarDataUrl, { cache: 'no-store' })
     }
     const publicationsById = new Map((data.publications || []).map(paper => [paper.author_pub_id, paper]));
     const publicationsByTitle = new Map((data.publications || []).map(paper => [normalizeTitle(paper.title), paper]));
+    document.querySelectorAll('[data-publication-count]').forEach(element => {
+      element.textContent = new Intl.NumberFormat(document.documentElement.lang).format(publicationsById.size);
+    });
     document.querySelectorAll('.publication').forEach(publication => {
       const title = publication.querySelector('[itemprop="headline"]')?.textContent;
       const paper = publicationsById.get(publication.dataset.scholarId) || (title ? publicationsByTitle.get(normalizeTitle(title)) : null);
