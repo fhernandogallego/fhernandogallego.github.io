@@ -1,7 +1,7 @@
 document.querySelector('#year').textContent = String(new Date().getFullYear());
 
 const spanish = document.documentElement.lang === 'es';
-const scholarDataUrl = spanish ? '../data/scholar.json' : 'data/scholar.json';
+const scholarDataUrl = '/data/scholar.json';
 const normalizeTitle = value => value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 
 fetch(scholarDataUrl, { cache: 'no-store' })
