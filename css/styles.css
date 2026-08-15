@@ -52,7 +52,11 @@ h2 { margin: 0; font-size: 1.55rem; font-weight: 400; }
 .pub-title { color: var(--ink); font-size: 1.05rem; font-weight: 600; line-height: 1.35; text-decoration: none; }
 .pub-title:hover { color: var(--link); }
 .publication p { margin: 5px 0 0; color: var(--muted); font-size: .78rem; line-height: 1.4; }
-.pub-doi { font-family: Arial, sans-serif; }
+.pub-authors, .pub-meta { font-family: Arial, sans-serif; }
+.pub-authors { color: #555; }
+.pub-authors .profile-author, .paper-authors .profile-author { color: var(--ink); font-weight: 700; }
+.pub-meta { margin-top: 3px !important; font-size: .74rem !important; }
+.pub-journal { font-family: Georgia, "Times New Roman", serif; font-style: italic; }
 .journal-flags { display: inline-flex; align-items: center; justify-content: center; gap: 5px; vertical-align: 1px; }
 .journal-empty { color: #aaa; font: .8rem Arial, sans-serif; }
 .quartile-badge { display: inline-block; padding: 1px 5px; color: #303030; background: #f0f0ed; border: 1px solid #d4d4cf; border-radius: 2px; font: 600 .68rem/1.35 Arial, sans-serif; letter-spacing: .02em; }

@@ -1,4 +1,10 @@
 {
+  "2026-retroalimentacion-formativa-con-ia-generativa-en-programacion-diseno-del-2b29a892": {
+    "status": "curated",
+    "journal": "Actas de las Jenui",
+    "publisher": "Asociación de Enseñantes Universitarios de la Informática (AENUI)",
+    "type": "proceedings-article"
+  },
   "2026-diagnostic-driven-topology-adaptive-generative-adversarial-networks-for-1d8df072": {
     "repository_url": "https://uvadoc.uva.es/handle/10324/83809"
   },
@@ -13,6 +19,7 @@
       "Berta San Isidro San Cristóbal"
     ],
     "journal": "Actas de las Jornadas sobre la Enseñanza Universitaria de la Informática",
+    "publisher": "Asociación de Enseñantes Universitarios de la Informática (AENUI)",
     "volume": "10",
     "pages": "361-369",
     "type": "proceedings-article",
@@ -29,6 +36,7 @@
       "Beatriz González Alonso"
     ],
     "journal": "Actas de las Jornadas sobre la Enseñanza Universitaria de la Informática",
+    "publisher": "Asociación de Enseñantes Universitarios de la Informática (AENUI)",
     "volume": "9",
     "pages": "85-92",
     "type": "proceedings-article",
@@ -46,6 +54,19 @@
     "pages": "269-274",
     "type": "book-chapter",
     "open_access_url": "https://uvadoc.uva.es/bitstream/handle/10324/75485/EL%20PODER%20DE%20INNOVAR%20digital.pdf?sequence=1"
+  },
+  "2024-gamificacion-en-parques-y-jardines-ornamental-plants-kahoot-y-ruletas-pa-daa3ad01": {
+    "status": "curated",
+    "authors": [
+      "Ana Hernando Gallego",
+      "Raúl Muñoz Bautista",
+      "F. Hernando-Galego",
+      "Javier Velázquez Saornil",
+      "Mathieu Legrand"
+    ],
+    "journal": "Proceedings from the International Congress on Project Management and Engineering",
+    "publisher": "Asociación Española de Dirección e Ingeniería de Proyectos (AEIPRO)",
+    "type": "proceedings-article"
   },
   "2018-stress-level-assessment-with-non-intrusive-sensors-4a144755": {
     "status": "curated",

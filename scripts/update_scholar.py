@@ -84,6 +84,61 @@ def publication_authors(paper: dict) -> list[str]:
     return [author.strip() for author in re.split(r"\s+and\s+", authors) if author.strip()]
 
 
+def is_profile_author(author: str) -> bool:
+    """Recognize the profile owner across the signatures used by data providers."""
+    folded = "".join(
+        character for character in unicodedata.normalize("NFKD", author).casefold()
+        if not unicodedata.combining(character)
+    )
+    tokens = re.sub(r"[^a-z]+", " ", folded).split()
+    return (
+        bool(tokens)
+        and tokens[0] in {"f", "francisco"}
+        and "hernando" in tokens
+        and ("galego" in tokens or "gallego" in tokens)
+    )
+
+
+def render_authors_html(paper: dict) -> str:
+    rendered = []
+    for author in publication_authors(paper):
+        escaped = html.escape(author)
+        person = f'<span itemprop="author">{escaped}</span>'
+        if is_profile_author(author):
+            person = f'<strong class="profile-author">{person}</strong>'
+        rendered.append(person)
+    return " · ".join(rendered)
+
+
+def publication_publisher(paper: dict) -> str:
+    """Return a concise publisher or responsible repository/association name."""
+    publisher = str(paper.get("publisher") or "").strip()
+    aliases = {
+        "Elsevier BV": "Elsevier",
+        "MDPI AG": "MDPI",
+        "Institute of Electrical and Electronics Engineers (IEEE)": "IEEE",
+        "Springer Science and Business Media LLC": "Springer Nature",
+    }
+    if publisher:
+        return aliases.get(publisher, publisher)
+    venue = str(paper.get("journal") or paper.get("venue") or "")
+    if "arXiv" in venue:
+        return "arXiv"
+    if "Jenui" in venue or "Enseñanza Universitaria de la Informática" in venue:
+        return "AENUI"
+    return ""
+
+
+def publication_venue(paper: dict) -> str:
+    journal = str(paper.get("journal") or "").strip()
+    if journal:
+        return journal
+    venue = str(paper.get("venue") or "").strip()
+    if "arXiv" in venue:
+        return "arXiv preprint"
+    return venue
+
+
 def publication_url(item: dict) -> str:
     direct_url = item.get("pub_url") or item.get("eprint_url")
     if direct_url:
@@ -313,7 +368,9 @@ def render_publications_html(publications: list[dict], language: str) -> str:
         title = html.escape(paper["title"])
         year = html.escape(paper["year"] or "—")
         data_year = as_int(paper["year"])
-        venue = html.escape(paper.get("journal") or paper["venue"])
+        authors_html = render_authors_html(paper)
+        publisher = html.escape(publication_publisher(paper))
+        venue = html.escape(publication_venue(paper))
         url = html.escape(scholar_publication_url(paper), quote=True)
         detail_url = html.escape(f"publications/{paper['slug']}/", quote=True)
         publication_id = html.escape(paper.get("author_pub_id", ""), quote=True)
@@ -322,7 +379,13 @@ def render_publications_html(publications: list[dict], language: str) -> str:
             f'<time itemprop="datePublished" datetime="{year}">{year}</time>'
             if year != "—" else ""
         )
-        metadata = " · ".join(value for value in (published_html, venue) if value) or "—"
+        metadata = " · ".join(
+            value for value in (
+                published_html,
+                f'<span class="pub-publisher" itemprop="publisher">{publisher}</span>' if publisher else "",
+                f'<cite class="pub-journal" itemprop="isPartOf">{venue}</cite>' if venue else "",
+            ) if value
+        ) or "—"
         indicators = paper.get("journal_indicators") or {}
         citescore = indicators.get("citescore") or {}
         indicator_html = ""
@@ -366,7 +429,8 @@ def render_publications_html(publications: list[dict], language: str) -> str:
             f'data-scholar-id="{publication_id}" itemscope itemtype="https://schema.org/ScholarlyArticle">'
             f'<td class="pub-main"><a class="pub-title" itemprop="url" href="{detail_url}">'
             f'<span itemprop="headline">{title}</span></a>'
-            f'<p class="pub-doi">{metadata}</p></td>'
+            f'<p class="pub-authors">{authors_html}</p>'
+            f'<p class="pub-meta">{metadata}</p></td>'
             f'<td class="pub-quality">{indicator_html}</td>'
             f'<td class="pub-citations"><a href="{url}" aria-label="{citation_label}">'
             f'<span class="citation-live" data-scholar-citations>{citations}</span></a></td></tr>'
@@ -501,8 +565,9 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
     year = paper["year"] or "Undated"
     published = paper.get("published") or paper["year"] or ""
     author_names = publication_authors(paper)
-    authors = " · ".join(author_names)
-    venue = paper["venue"] or ("Registro de Google Scholar" if spanish else "Google Scholar record")
+    authors_html = render_authors_html(paper)
+    venue = publication_venue(paper) or ("Registro de Google Scholar" if spanish else "Google Scholar record")
+    publisher = publication_publisher(paper) or "—"
     canonical = f"https://www.fransdata.com/{'es/' if spanish else ''}publications/{slug}/"
     alternate = f"https://www.fransdata.com/{'' if spanish else 'es/'}publications/{slug}/"
     scholar_url = scholar_publication_url(paper)
@@ -540,6 +605,10 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
             ) if url
         ],
         "isPartOf": {"@type": "Periodical", "name": paper.get("journal") or venue},
+        "publisher": (
+            {"@type": "Organization", "name": publisher}
+            if publisher != "—" else None
+        ),
     }
     if citescore:
         schema["additionalProperty"] = [
@@ -568,7 +637,9 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
         "back": "Volver a publicaciones" if spanish else "Back to publications",
         "record": "Ficha de publicación" if spanish else "Publication record",
         "authors": "Autores" if spanish else "Authors",
-        "published": "Publicación" if spanish else "Published in",
+        "year": "Año" if spanish else "Year",
+        "publisher": "Editorial" if spanish else "Publisher",
+        "published": "Revista o publicación" if spanish else "Journal or publication",
         "citations": "Citas en Google Scholar" if spanish else "Google Scholar citations",
         "summary": "Resumen de investigación" if spanish else "Research summary",
         "summary_note": (
@@ -720,7 +791,9 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
       <p class="paper-kicker">{labels['record']} · {html.escape(str(year))}</p>
       <h1>{html.escape(title)}</h1>
       <dl>
-        <div><dt>{labels['authors']}</dt><dd>{html.escape(authors)}</dd></div>
+        <div><dt>{labels['authors']}</dt><dd class="paper-authors">{authors_html}</dd></div>
+        <div><dt>{labels['year']}</dt><dd>{html.escape(str(year))}</dd></div>
+        <div><dt>{labels['publisher']}</dt><dd itemprop="publisher">{html.escape(publisher)}</dd></div>
         <div><dt>{labels['published']}</dt><dd>{html.escape(venue)}</dd></div>
         <div><dt>{labels['citations']}</dt><dd>{paper['citations']}</dd></div>
       </dl>
