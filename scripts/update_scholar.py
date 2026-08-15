@@ -160,32 +160,46 @@ def apply_curated_metadata(publications: list[dict], summaries: dict) -> None:
                 break
 
 
-def fetch_snapshot() -> dict:
+def fetch_snapshot(previous: dict | None = None) -> dict:
     """Download the complete profile and normalize it for the static website."""
     author = scholarly.fill(
         scholarly.search_author_id(AUTHOR_ID),
         sections=["basics", "indices", "counts", "publications"],
     )
+    previous_publications = (previous or {}).get("publications", [])
+    previous_by_id = {
+        paper.get("author_pub_id"): paper
+        for paper in previous_publications
+        if paper.get("author_pub_id")
+    }
     publications = []
     for item in author.get("publications", []):
         bib = item.get("bib", {}) or {}
+        publication_id = str(item.get("author_pub_id") or "")
+        prior = previous_by_id.get(publication_id, {})
         title = str(bib.get("title") or "")
         venue = str(bib.get("citation") or bib.get("venue") or "")
-        if not venue or title.endswith(("…", "...")):
+        # Existing records already contain the slow detail-page fields. Scholar
+        # is queried in depth only for a genuinely new profile publication.
+        if not prior and (not bib.get("author") or not bib.get("pub_year") or not venue or title.endswith(("…", "..."))):
             try:
                 item = scholarly.fill(item)
                 bib = item.get("bib", {}) or bib
             except Exception:  # Scholar can throttle individual detail pages.
                 pass
+        current_title = str(bib.get("title") or "")
+        if current_title.endswith(("…", "...")) and prior.get("title"):
+            current_title = prior["title"]
+        direct_url = item.get("pub_url") or item.get("eprint_url")
         publications.append(
             {
-                "title": str(bib.get("title") or title or "Untitled"),
-                "authors": author_text(bib.get("author")),
-                "year": str(bib.get("pub_year") or ""),
-                "venue": str(bib.get("citation") or bib.get("venue") or venue),
+                "title": current_title or prior.get("title") or title or "Untitled",
+                "authors": author_text(bib.get("author")) or prior.get("authors", ""),
+                "year": str(bib.get("pub_year") or prior.get("year") or ""),
+                "venue": str(bib.get("citation") or bib.get("venue") or prior.get("venue") or venue),
                 "citations": as_int(item.get("num_citations")),
-                "author_pub_id": str(item.get("author_pub_id") or ""),
-                "url": publication_url(item),
+                "author_pub_id": publication_id,
+                "url": str(direct_url or prior.get("url") or publication_url(item)),
             }
         )
 
@@ -565,7 +579,7 @@ def main() -> None:
         print(f"Rendered {len(snapshot['publications'])} publications from stored data")
         return
     previous = load_previous()
-    snapshot = fetch_snapshot()
+    snapshot = fetch_snapshot(previous)
     apply_curated_metadata(snapshot["publications"], load_summaries())
     validate_snapshot(snapshot, previous)
     DATA_FILE.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
