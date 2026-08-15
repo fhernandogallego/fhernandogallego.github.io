@@ -1,0 +1,76 @@
+{
+  "2026-diagnostic-driven-topology-adaptive-generative-adversarial-networks-for-1d8df072": {
+    "repository_url": "https://uvadoc.uva.es/handle/10324/83809"
+  },
+  "2025-uso-de-asistentes-de-ia-en-programacion-orientada-a-objetos-impacto-de-u-83f60007": {
+    "status": "curated",
+    "authors": [
+      "José Vicente Álvarez Bravo",
+      "María Antonia López Luengo",
+      "Diego Martín de Andrés",
+      "María Victoria Vega Agapito",
+      "F. Hernando-Galego",
+      "Berta San Isidro San Cristóbal"
+    ],
+    "journal": "Actas de las Jornadas sobre la Enseñanza Universitaria de la Informática",
+    "volume": "10",
+    "pages": "361-369",
+    "type": "proceedings-article",
+    "open_access_url": "https://aenui.org/actas/pdf/JENUI_2025_043.pdf"
+  },
+  "2024-analisis-de-una-experiencia-de-utilizacion-de-asistentes-de-ia-en-progra-124e50a6": {
+    "status": "curated",
+    "authors": [
+      "José Vicente Álvarez Bravo",
+      "María Antonia López Luengo",
+      "Belén Palop del Río",
+      "María Victoria Vega Agapito",
+      "F. Hernando-Galego",
+      "Beatriz González Alonso"
+    ],
+    "journal": "Actas de las Jornadas sobre la Enseñanza Universitaria de la Informática",
+    "volume": "9",
+    "pages": "85-92",
+    "type": "proceedings-article",
+    "open_access_url": "https://aenui.org/actas/pdf/JENUI_2024_011.pdf"
+  },
+  "2024-identificacion-de-buenas-practicas-en-el-uso-de-asistentes-inteligentes-215bbe9f": {
+    "status": "curated",
+    "authors": [
+      "José Vicente Álvarez Bravo",
+      "María Antonia López Luengo",
+      "María Victoria Vega Agapito",
+      "F. Hernando-Galego"
+    ],
+    "journal": "Innovación docente en Educación Superior. El poder de innovar: experiencias educativas que transforman",
+    "pages": "269-274",
+    "type": "book-chapter",
+    "open_access_url": "https://uvadoc.uva.es/bitstream/handle/10324/75485/EL%20PODER%20DE%20INNOVAR%20digital.pdf?sequence=1"
+  },
+  "2018-stress-level-assessment-with-non-intrusive-sensors-4a144755": {
+    "status": "curated",
+    "authors": ["F. Hernando-Galego"],
+    "publisher": "Universidad Carlos III de Madrid",
+    "type": "dissertation",
+    "open_access_url": "https://e-archivo.uc3m.es/entities/publication/0e2f1356-93d3-4157-a919-7fa80c9445ee"
+  },
+  "2018-stress-level-assessment-with-non-intrusive-sensors-f8c53d6d": {
+    "status": "curated",
+    "authors": ["F. Hernando-Galego"],
+    "publisher": "Universidad Carlos III de Madrid",
+    "type": "dissertation",
+    "open_access_url": "https://e-archivo.uc3m.es/entities/publication/0e2f1356-93d3-4157-a919-7fa80c9445ee"
+  },
+  "2012-metodo-y-dispositivo-para-la-inhibicion-de-senales-de-telefonia-movil-7d123680": {
+    "status": "curated",
+    "authors": [
+      "Ana García Armada",
+      "Víctor P. Gil Jiménez",
+      "Nieves Sidney González Pizarro",
+      "F. Hernando-Galego"
+    ],
+    "publisher": "Universidad Carlos III de Madrid",
+    "type": "patent",
+    "repository_url": "https://patents.google.com/patent/ES2455067A1/es"
+  }
+}

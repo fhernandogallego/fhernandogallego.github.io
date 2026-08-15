@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 import re
+import sys
 import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
@@ -19,6 +20,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "scholar.json"
 HISTORY_FILE = ROOT / "data" / "scholar-history.jsonl"
 SUMMARIES_FILE = ROOT / "data" / "publication-summaries.json"
+METADATA_FILE = ROOT / "data" / "publication-metadata.json"
+OVERRIDES_FILE = ROOT / "data" / "publication-overrides.json"
 AUTHOR_ID = os.environ.get("SCHOLAR_AUTHOR_ID", "89e5aoQAAAAJ")
 ACADEMIC_NAME = "F. Hernando-Galego"
 PUBLICATIONS_BLOCK = re.compile(
@@ -89,6 +92,16 @@ def publication_url(item: dict) -> str:
     return f"https://scholar.google.com/citations?user={quote(AUTHOR_ID)}"
 
 
+def scholar_publication_url(paper: dict) -> str:
+    publication_id = paper.get("author_pub_id", "")
+    if publication_id:
+        return (
+            "https://scholar.google.com/citations?view_op=view_citation"
+            f"&hl=en&user={quote(AUTHOR_ID)}&citation_for_view={quote(publication_id)}"
+        )
+    return f"https://scholar.google.com/citations?user={quote(AUTHOR_ID)}"
+
+
 def slugify_publication(paper: dict) -> str:
     normalized = unicodedata.normalize("NFKD", paper["title"]).encode("ascii", "ignore").decode()
     words = re.sub(r"[^a-z0-9]+", "-", normalized.lower()).strip("-")[:72].rstrip("-")
@@ -106,6 +119,16 @@ def load_summaries() -> dict:
     return json.loads(SUMMARIES_FILE.read_text(encoding="utf-8"))
 
 
+def load_publication_metadata() -> dict:
+    if not METADATA_FILE.exists():
+        return {}
+    return json.loads(METADATA_FILE.read_text(encoding="utf-8"))
+
+
+def load_publication_overrides() -> dict:
+    return json.loads(OVERRIDES_FILE.read_text(encoding="utf-8"))
+
+
 def publication_summary(title: str, language: str, summaries: dict) -> str:
     normalized = title.casefold()
     for prefix, translations in summaries.items():
@@ -115,7 +138,20 @@ def publication_summary(title: str, language: str, summaries: dict) -> str:
 
 
 def apply_curated_metadata(publications: list[dict], summaries: dict) -> None:
+    metadata = load_publication_metadata()
+    overrides = load_publication_overrides()
     for paper in publications:
+        slug = paper.get("slug", "")
+        record = {**metadata.get(slug, {}), **overrides.get(slug, {})}
+        if record.get("status") in {"matched", "curated"}:
+            for key in (
+                "doi", "journal", "publisher", "published", "volume", "issue", "pages", "type",
+                "openalex_id", "open_access_url", "repository_url",
+            ):
+                if record.get(key):
+                    paper[key] = record[key]
+            if record.get("authors"):
+                paper["authors"] = " and ".join(record["authors"])
         normalized = paper["title"].casefold()
         for prefix, note in summaries.items():
             if normalized.startswith(prefix.casefold()):
@@ -199,7 +235,7 @@ def render_publications_html(publications: list[dict], language: str) -> str:
         title = html.escape(paper["title"])
         year = html.escape(paper["year"] or "—")
         venue = html.escape(paper["venue"])
-        url = html.escape(paper["url"], quote=True)
+        url = html.escape(scholar_publication_url(paper), quote=True)
         detail_url = html.escape(f"publications/{paper['slug']}/", quote=True)
         citations = paper["citations"]
         metadata = f"{venue} · " if venue else ""
@@ -220,11 +256,55 @@ def render_publications_llms(publications: list[dict]) -> str:
         authors = f"{' and '.join(publication_authors(paper))}. "
         year = f" ({paper['year']})" if paper["year"] else ""
         venue = f" {paper['venue']}" if paper["venue"] else ""
+        doi = f" DOI: https://doi.org/{paper['doi']}." if paper.get("doi") else ""
         lines.append(
             f"- {authors}\"{paper['title']}\"{year}.{venue} "
-            f"Google Scholar citations: {paper['citations']}. URL: {paper['url']}"
+            f"Google Scholar citations: {paper['citations']}.{doi} URL: {paper['url']}"
         )
     return "\n".join(lines)
+
+
+def bibtex_value(value: object) -> str:
+    escapes = {
+        "\\": r"\textbackslash{}",
+        "{": r"\{",
+        "}": r"\}",
+        "#": r"\#",
+        "%": r"\%",
+        "&": r"\&",
+        "_": r"\_",
+    }
+    return "".join(escapes.get(character, character) for character in str(value or ""))
+
+
+def write_bibtex(publications: list[dict]) -> None:
+    entries = []
+    for paper in publications:
+        authors = " and ".join(publication_authors(paper))
+        year = paper.get("year") or "nd"
+        title_word = next((word.title() for word in re.findall(r"[A-Za-z]+", paper["title"]) if len(word) > 3), "Work")
+        key = f"HernandoGalego{year}{title_word}{paper['slug'][-4:]}"
+        entry_type = {
+            "journal-article": "article",
+            "proceedings-article": "inproceedings",
+            "book-chapter": "incollection",
+        }.get(paper.get("type"), "article" if paper.get("journal") else "misc")
+        fields = {
+            "author": authors,
+            "title": paper["title"],
+            "year": paper.get("year"),
+            "journal": paper.get("journal"),
+            "volume": paper.get("volume"),
+            "number": paper.get("issue"),
+            "pages": paper.get("pages"),
+            "doi": paper.get("doi"),
+            "url": f"https://www.fransdata.com/publications/{paper['slug']}/",
+        }
+        rendered_fields = ",\n".join(
+            f"  {name} = {{{bibtex_value(value)}}}" for name, value in fields.items() if value
+        )
+        entries.append(f"@{entry_type}{{{key},\n{rendered_fields}\n}}")
+    (ROOT / "publications.bib").write_text("\n\n".join(entries) + "\n", encoding="utf-8")
 
 
 def replace_publication_block(text: str, rendered: str) -> str:
@@ -245,12 +325,13 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
     slug = paper["slug"]
     summary = publication_summary(title, language, summaries)
     year = paper["year"] or "Undated"
+    published = paper.get("published") or paper["year"] or ""
     author_names = publication_authors(paper)
     authors = " · ".join(author_names)
     venue = paper["venue"] or ("Registro de Google Scholar" if spanish else "Google Scholar record")
     canonical = f"https://www.fransdata.com/{'es/' if spanish else ''}publications/{slug}/"
     alternate = f"https://www.fransdata.com/{'' if spanish else 'es/'}publications/{slug}/"
-    scholar_url = paper["url"]
+    scholar_url = scholar_publication_url(paper)
     doi = paper.get("doi", "")
     doi_url = f"https://doi.org/{doi}" if doi else ""
     description = summary or (
@@ -270,10 +351,18 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
             }
             for author in author_names
         ],
-        "datePublished": paper["year"] or None,
+        "datePublished": published or None,
         "description": summary or None,
         "url": canonical,
-        "sameAs": [url for url in (doi_url, scholar_url) if url],
+        "sameAs": [
+            url for url in (
+                doi_url,
+                scholar_url,
+                paper.get("url", ""),
+                paper.get("openalex_id", ""),
+                paper.get("repository_url", ""),
+            ) if url
+        ],
         "isPartOf": {"@type": "Periodical", "name": venue},
     }
     schema = {key: value for key, value in schema.items() if value is not None}
@@ -291,6 +380,8 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
             "Original description prepared for this website; consult the publication for its authoritative abstract."
         ),
         "source": "Ver registro en Google Scholar" if spanish else "View Google Scholar record",
+        "open": "Versión de acceso abierto" if spanish else "Open-access version",
+        "repository": "Registro en repositorio" if spanish else "Repository record",
         "language": "English" if spanish else "Español",
     }
     summary_html = ""
@@ -306,14 +397,33 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
     citation_meta = (
         f'<meta name="citation_title" content="{html.escape(title, quote=True)}">\n'
         f'{citation_authors}\n'
-        f'<meta name="citation_publication_date" content="{html.escape(str(year), quote=True)}">\n'
+        f'<meta name="citation_publication_date" content="{html.escape(str(published or year), quote=True)}">\n'
         f'<meta name="citation_public_url" content="{html.escape(canonical, quote=True)}">'
     )
     if doi:
         citation_meta += f'\n<meta name="citation_doi" content="{html.escape(doi, quote=True)}">'
+    if paper.get("journal"):
+        citation_meta += f'\n<meta name="citation_journal_title" content="{html.escape(paper["journal"], quote=True)}">'
+    if paper.get("volume"):
+        citation_meta += f'\n<meta name="citation_volume" content="{html.escape(paper["volume"], quote=True)}">'
+    if paper.get("issue"):
+        citation_meta += f'\n<meta name="citation_issue" content="{html.escape(paper["issue"], quote=True)}">'
+    if paper.get("pages"):
+        page_parts = re.split(r"[-–—]", paper["pages"], maxsplit=1)
+        citation_meta += f'\n<meta name="citation_firstpage" content="{html.escape(page_parts[0].strip(), quote=True)}">'
+        if len(page_parts) == 2:
+            citation_meta += f'\n<meta name="citation_lastpage" content="{html.escape(page_parts[1].strip(), quote=True)}">'
     doi_link = (
         f'<a href="{html.escape(doi_url, quote=True)}">DOI {html.escape(doi)} ↗</a> · '
         if doi else ""
+    )
+    open_link = (
+        f'<a href="{html.escape(paper["open_access_url"], quote=True)}">{labels["open"]} ↗</a> · '
+        if paper.get("open_access_url") else ""
+    )
+    repository_link = (
+        f'<a href="{html.escape(paper["repository_url"], quote=True)}">{labels["repository"]} ↗</a> · '
+        if paper.get("repository_url") else ""
     )
     return f'''<!doctype html>
 <html lang="{language}">
@@ -344,7 +454,7 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
         <div><dt>{labels['citations']}</dt><dd>{paper['citations']}</dd></div>
       </dl>
       {summary_html}
-      <p class="paper-source">{doi_link}<a href="{html.escape(scholar_url, quote=True)}">{labels['source']} ↗</a></p>
+      <p class="paper-source">{doi_link}{open_link}{repository_link}<a href="{html.escape(scholar_url, quote=True)}">{labels['source']} ↗</a></p>
     </article>
   </main>
 </body>
@@ -433,10 +543,19 @@ def update_public_pages(snapshot: dict) -> None:
     llms = replace_publication_block(llms, render_publications_llms(snapshot["publications"]))
     llms_path.write_text(llms, encoding="utf-8")
     write_publication_pages(snapshot)
+    write_bibtex(snapshot["publications"])
     update_sitemap(snapshot["publications"])
 
 
 def main() -> None:
+    if "--render-only" in sys.argv:
+        snapshot = load_previous()
+        if not snapshot:
+            raise RuntimeError("No Scholar snapshot is available to render")
+        apply_curated_metadata(snapshot["publications"], load_summaries())
+        update_public_pages(snapshot)
+        print(f"Rendered {len(snapshot['publications'])} publications from stored data")
+        return
     previous = load_previous()
     snapshot = fetch_snapshot()
     apply_curated_metadata(snapshot["publications"], load_summaries())

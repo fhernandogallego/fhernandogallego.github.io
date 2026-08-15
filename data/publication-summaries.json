@@ -1,4 +1,120 @@
 {
+  "physical layer security over fluid reconfigurable intelligent surface": {
+    "en": "This work studies secure downlink communications assisted by fluid reconfigurable intelligent surfaces, whose active elements adapt to channel conditions. Analytical bounds for secrecy outage and capacity show gains over fixed conventional surfaces, including under spatial correlation.",
+    "es": "Este trabajo estudia comunicaciones descendentes seguras asistidas por superficies inteligentes reconfigurables fluidas, cuyos elementos activos se adaptan al canal. Las cotas analíticas de interrupción y capacidad de secreto muestran ventajas frente a superficies convencionales, incluso con correlación espacial."
+  },
+  "retroalimentación formativa con ia generativa en programación": {
+    "en": "The work presents a protocol for using generative AI to provide formative feedback in programming education and evaluates its classroom results. It focuses on structuring feedback as support for learning rather than as a replacement for student reasoning.",
+    "es": "El trabajo presenta un protocolo para emplear IA generativa en la retroalimentación formativa de programación y evalúa sus resultados en el aula. Se centra en estructurar la respuesta como apoyo al aprendizaje y no como sustitución del razonamiento del estudiante."
+  },
+  "symmetry-aware optimized fuzzy deep reinforcement learning": {
+    "en": "A symmetry-aware framework combines fuzzy logic, deep reinforcement learning, GRU temporal modelling and multi-objective optimization for adaptive smart-grid load balancing. Tests on UK-DALE, Pecan Street and REDD examine accuracy, stability, convergence and real-time suitability.",
+    "es": "Un marco sensible a la simetría combina lógica difusa, aprendizaje por refuerzo profundo, modelado temporal GRU y optimización multiobjetivo para equilibrar cargas en redes eléctricas inteligentes. Se evalúan precisión, estabilidad, convergencia y uso en tiempo real sobre UK-DALE, Pecan Street y REDD."
+  },
+  "multi-criteria decision-making (mives) and geographic information systems": {
+    "en": "MIVES multi-criteria assessment is integrated with GIS to map environmental, economic and social sustainability across seven tourism destinations near protected areas in southern Costa Rica. Thirteen indicators support spatial comparison and management decisions.",
+    "es": "La evaluación multicriterio MIVES se integra con SIG para cartografiar la sostenibilidad ambiental, económica y social de siete destinos turísticos próximos a espacios protegidos del sur de Costa Rica. Trece indicadores facilitan la comparación espacial y la toma de decisiones."
+  },
+  "a novel evolutionary optimized transformer-deep reinforcement learning": {
+    "en": "An evolutionary Transformer and deep-reinforcement-learning framework detects false-data-injection attacks in Industry 4.0 water infrastructure. Temporal modelling, adaptive decisions and optimized hyperparameters are evaluated across heterogeneous water treatment and distribution testbeds.",
+    "es": "Un marco evolutivo con Transformer y aprendizaje por refuerzo profundo detecta ataques de inyección de datos falsos en infraestructuras de agua de Industria 4.0. El modelado temporal, las decisiones adaptativas y los hiperparámetros optimizados se evalúan en distintos bancos de tratamiento y distribución."
+  },
+  "hdawn-hrdae": {
+    "en": "HDAWN-HRDAE combines deep autoencoders, wavelet networks and recurrent temporal modelling for music-genre recognition. On GTZAN it targets accurate classification with substantially lower computational complexity than deeper convolutional alternatives.",
+    "es": "HDAWN-HRDAE combina autoencoders profundos, redes wavelet y modelado temporal recurrente para reconocer géneros musicales. Sobre GTZAN busca alta precisión con una complejidad computacional sensiblemente menor que alternativas convolucionales más profundas."
+  },
+  "diagnostic driven topology adaptive generative adversarial networks": {
+    "en": "DTA-GAN adapts its generator and discriminator topology during training using diagnostic criteria relevant to mammography. Evaluation on CBIS-DDSM, INbreast and Mini-MIAS studies image fidelity, preservation of lesion features and downstream breast-cancer classification.",
+    "es": "DTA-GAN adapta durante el entrenamiento la topología del generador y el discriminador mediante criterios diagnósticos relevantes para mamografía. La evaluación sobre CBIS-DDSM, INbreast y Mini-MIAS estudia fidelidad de imagen, conservación de lesiones y clasificación posterior del cáncer de mama."
+  },
+  "continuous fluid antenna sampling": {
+    "en": "Continuous fluid-antenna sampling is formulated as Gaussian-process regression for uplink channel estimation in cell-free massive MIMO. Closed-form LMMSE analysis shows equal or lower estimation error than discrete port selection under the same position and pilot constraints.",
+    "es": "El muestreo continuo con antenas fluidas se formula como regresión de procesos gaussianos para estimar el canal ascendente en MIMO masivo sin celdas. El análisis LMMSE muestra un error igual o menor que la selección discreta de puertos bajo las mismas restricciones de posición y pilotos."
+  },
+  "adaptive acoustic feedback control in aphasia therapy": {
+    "en": "A graph-based adaptive acoustic-feedback system combines graph neural networks and reinforcement learning to model tonal transitions and suppress unintended resonance in Mandarin aphasic speech. The framework is designed for personalized, low-latency clinical feedback.",
+    "es": "Un sistema adaptativo de realimentación acústica combina redes neuronales de grafos y aprendizaje por refuerzo para modelar transiciones tonales y suprimir resonancias no deseadas en habla afásica en mandarín. El marco está orientado a una respuesta clínica personalizada y de baja latencia."
+  },
+  "a hybrid transformer-generative adversarial network-gated recurrent unit": {
+    "en": "Transformer-GAN-GRU integrates global temporal attention, generative augmentation and recurrent refinement for demand forecasting and load balancing. Evaluation on Pecan Street, RTS-GMLC and REDD tests predictive performance, stability and inference latency.",
+    "es": "Transformer-GAN-GRU integra atención temporal global, aumento generativo de datos y refinamiento recurrente para predecir demanda y equilibrar cargas. La evaluación sobre Pecan Street, RTS-GMLC y REDD analiza rendimiento predictivo, estabilidad y latencia."
+  },
+  "generative adversarial and transformer network synergy": {
+    "en": "A hybrid Transformer-GAN intrusion detector models contextual traffic dependencies while generating synthetic examples to reduce class imbalance. Multi-class experiments on CIC-IoT-2023 and TON_IoT assess robustness, efficiency and detection of diverse IoT attacks.",
+    "es": "Un detector de intrusiones híbrido Transformer-GAN modela dependencias contextuales del tráfico y genera ejemplos sintéticos para reducir el desequilibrio entre clases. Los experimentos multiclase sobre CIC-IoT-2023 y TON_IoT evalúan robustez, eficiencia y detección de distintos ataques IoT."
+  },
+  "an evolutionary deep reinforcement learning-based framework": {
+    "en": "A deep-reinforcement-learning anomaly detector combines CNN feature extraction, recurrent temporal modelling and artificial-bee-colony hyperparameter optimization. Four smart-power datasets are used to evaluate generalization, false alarms and computational efficiency.",
+    "es": "Un detector de anomalías con aprendizaje por refuerzo profundo combina extracción de características CNN, modelado temporal recurrente y optimización de hiperparámetros mediante colonia artificial de abejas. Cuatro conjuntos eléctricos inteligentes permiten evaluar generalización, falsas alarmas y eficiencia."
+  },
+  "uav-relay assisted rsma fluid antenna system": {
+    "en": "The paper analyses outage in a UAV-relayed multiuser network where a fixed base station uses rate-splitting multiple access and ground users employ fluid antennas. Closed-form and high-SNR results quantify the performance improvement over fixed-position user antennas.",
+    "es": "El artículo analiza la interrupción en una red multiusuario retransmitida por UAV, con acceso múltiple por división de tasa y antenas fluidas en los usuarios terrestres. Los resultados analíticos cuantifican la mejora frente a antenas de posición fija."
+  },
+  "a novel drl-transformer framework": {
+    "en": "An optimized DRL-Transformer controls beamforming and phase shifts in RIS-assisted terahertz communications. Transformer channel representations, adaptive reinforcement learning and biogeography-based tuning target higher sum rate, faster convergence and robustness for 6G networks.",
+    "es": "Un DRL-Transformer optimizado controla la conformación de haz y los desplazamientos de fase en comunicaciones terahertz asistidas por RIS. La representación del canal, el aprendizaje adaptativo y la optimización biogeográfica buscan mayor tasa suma, convergencia rápida y robustez para redes 6G."
+  },
+  "secure cooperative dual-ris-aided v2v communication": {
+    "en": "Evo-Transformer-GRU learns time-varying vehicular channels and jointly optimizes two cooperative intelligent surfaces to improve physical-layer secrecy. Simulations study secrecy rate, convergence and prediction robustness under changing eavesdropper positions.",
+    "es": "Evo-Transformer-GRU aprende canales vehiculares variables y optimiza conjuntamente dos superficies inteligentes cooperativas para mejorar la seguridad de capa física. Las simulaciones estudian tasa de secreto, convergencia y robustez ante distintas posiciones del espía."
+  },
+  "hybrid time series transformer–deep belief network": {
+    "en": "A time-series Transformer and deep-belief-network architecture, tuned by an improved orchard algorithm, detects anomalies across heterogeneous 5G, IoT, edge and DDoS traffic. Four benchmarks test temporal modelling, generalization and scalability toward 6G networks.",
+    "es": "Una arquitectura con Transformer temporal y red de creencia profunda, ajustada mediante un algoritmo orchard mejorado, detecta anomalías en tráfico heterogéneo 5G, IoT, edge y DDoS. Cuatro bancos evalúan modelado temporal, generalización y escalabilidad hacia 6G."
+  },
+  "unified anomaly detection in iot and cyber-physical networks": {
+    "en": "Evo-Transformer-LSTM combines global attention, local temporal dependencies and evolutionary hyperparameter tuning for unified anomaly detection in IoT and cyber-physical systems. Validation spans four CIC benchmarks covering conventional, IoT and vehicular traffic.",
+    "es": "Evo-Transformer-LSTM combina atención global, dependencias temporales locales y ajuste evolutivo de hiperparámetros para detectar anomalías en sistemas IoT y ciberfísicos. La validación abarca cuatro bancos CIC con tráfico convencional, IoT y vehicular."
+  },
+  "an optimized drl-gan approach": {
+    "en": "An optimized DRL-GAN combines adaptive decisions with reconstruction-based anomaly detection for electricity, hydrogen and renewable-energy systems. Tests on PSML and LEAD1.0 examine accuracy, convergence, runtime and robustness across heterogeneous operating conditions.",
+    "es": "Un DRL-GAN optimizado combina decisiones adaptativas con detección de anomalías basada en reconstrucción para sistemas eléctricos, de hidrógeno y energías renovables. Las pruebas sobre PSML y LEAD1.0 analizan precisión, convergencia, tiempo y robustez."
+  },
+  "uso de asistentes de ia en programación orientada a objetos": {
+    "en": "A good-practice guide promotes ethical, effective and reflective use of generative-AI assistants in Object-Oriented Programming. Pre/post questionnaires and reflective journals show improved confidence in question formulation and tool use, while identifying remaining challenges in critical thinking and open-ended inquiry.",
+    "es": "Una guía de buenas prácticas promueve el uso ético, eficaz y reflexivo de asistentes de IA generativa en Programación Orientada a Objetos. Cuestionarios pre/post y diarios reflexivos muestran mayor confianza al formular preguntas y utilizar las herramientas, además de retos pendientes en pensamiento crítico y preguntas abiertas."
+  },
+  "análisis de una experiencia de utilización de asistentes": {
+    "en": "This classroom study examines guided use of ChatGPT and GitHub Copilot in Object-Oriented Programming through questionnaires, focus groups and direct observation. Students report greater confidence while developing a more critical stance toward AI-generated programming solutions.",
+    "es": "Este estudio de aula analiza el uso guiado de ChatGPT y GitHub Copilot en Programación Orientada a Objetos mediante cuestionarios, grupos focales y observación directa. El alumnado manifiesta mayor confianza y desarrolla una actitud más crítica ante las soluciones de programación generadas por IA."
+  },
+  "identificación de buenas prácticas en el uso de asistentes inteligentes": {
+    "en": "A teaching-innovation project introduces AI assistants into practical Object-Oriented Programming and User Interface Design activities. The study seeks autonomous, critical learning and identifies classroom practices associated with positive changes in student autonomy and critical thinking.",
+    "es": "Un proyecto de innovación docente incorpora asistentes de IA a las prácticas de Programación Orientada a Objetos y Diseño de Interfaces de Usuario. El estudio busca un aprendizaje autónomo y crítico e identifica prácticas asociadas con mejoras en autonomía y pensamiento crítico."
+  },
+  "a novel evolutionary transformer‐deep reinforcement learning": {
+    "en": "Evo-Transformer-DRL integrates attention-based temporal modelling, adaptive decision policies and grey-wolf hyperparameter optimization to detect false-data injection in smart water systems. It is tested on SWaT, WADI and BATADAL infrastructure datasets.",
+    "es": "Evo-Transformer-DRL integra modelado temporal con atención, políticas de decisión adaptativas y optimización de hiperparámetros grey wolf para detectar inyección de datos falsos en sistemas de agua. Se prueba sobre los conjuntos SWaT, WADI y BATADAL."
+  },
+  "novel orthogonal multi-sequences": {
+    "en": "New orthogonal multi-sequences are designed to interfere simultaneously with the OVSF codes used by UMTS data channels. Analysis over multipath Rayleigh channels reports a substantial power advantage over conventional wideband-noise jamming.",
+    "es": "Se diseñan nuevas multisecuencias ortogonales para interferir simultáneamente los códigos OVSF utilizados por los canales de datos UMTS. El análisis sobre canales Rayleigh multitrayecto muestra una ventaja de potencia considerable frente a la interferencia convencional de ruido de banda ancha."
+  },
+  "individual performance calibration using physiological stress signals": {
+    "en": "Attention and reasoning tests of increasing difficulty are combined with galvanic skin response, heart rate and electromyography to estimate an individual's stress-performance curve. Results identify GSR and heart rate as useful signals for locating the point before performance begins to decline.",
+    "es": "Pruebas de atención y razonamiento de dificultad creciente se combinan con respuesta galvánica, frecuencia cardiaca y electromiografía para estimar la curva individual estrés-rendimiento. Los resultados señalan GSR y frecuencia cardiaca como señales útiles para localizar el punto previo al descenso del rendimiento."
+  },
+  "a constant-time hardware architecture for the csidh": {
+    "en": "A constant-time CSIDH-512 accelerator establishes hardware baselines for post-quantum key generation on FPGA and ASIC. A finite-state controller and deeply pipelined 512-bit arithmetic unit mitigate timing leakage while quantifying latency, cycle count and implementation cost.",
+    "es": "Un acelerador CSIDH-512 de tiempo constante establece referencias de generación de claves poscuánticas en FPGA y ASIC. Un controlador de estados y una unidad aritmética de 512 bits segmentada mitigan fugas temporales y cuantifican latencia, ciclos y coste de implementación."
+  },
+  "stress level assessment with non-intrusive sensors": {
+    "en": "This doctoral research develops physiological features and algorithms for non-intrusive stress assessment using galvanic skin response, heart rate and electromyography. It studies controlled experiments, individual calibration and generalization toward longitudinal workplace monitoring.",
+    "es": "Esta investigación doctoral desarrolla características fisiológicas y algoritmos para evaluar estrés de forma no intrusiva mediante respuesta galvánica, frecuencia cardiaca y electromiografía. Estudia experimentos controlados, calibración individual y generalización hacia la monitorización longitudinal en el trabajo."
+  },
+  "gamificación en parques y jardines": {
+    "en": "This teaching experience applies gamification to the recognition of common ornamental plant species in parks and gardens. Kahoot activities and roulette-style exercises provide interactive practice and reinforcement of botanical identification.",
+    "es": "Esta experiencia docente aplica gamificación al reconocimiento de especies ornamentales habituales en parques y jardines. Actividades con Kahoot y ejercicios tipo ruleta ofrecen práctica interactiva y refuerzo de la identificación botánica."
+  },
+  "método y dispositivo para la inhibición de señales de telefonía móvil": {
+    "en": "The patent describes selective interference with synchronization signals used by 3G UMTS and 4G LTE systems. Targeting synchronization channels is intended to inhibit mobile access with substantially less transmitted power than conventional wideband-noise jamming.",
+    "es": "La patente describe la interferencia selectiva de señales de sincronismo utilizadas por sistemas 3G UMTS y 4G LTE. Actuar sobre los canales de sincronización permite inhibir el acceso móvil con bastante menos potencia transmitida que la interferencia convencional de ruido de banda ancha."
+  },
+  "orthogonal multi-sequences for efficiently jamming": {
+    "en": "This record concerns orthogonal multi-sequences designed to interfere simultaneously with the OVSF codes used by UMTS data channels, reducing the transmission power required relative to conventional wideband-noise jamming.",
+    "es": "Este registro aborda multisecuencias ortogonales diseñadas para interferir simultáneamente los códigos OVSF de los canales de datos UMTS, reduciendo la potencia necesaria frente a la interferencia convencional de ruido de banda ancha."
+  },
   "a novel hybrid evolutionary transformer-long short-term memory model": {
     "doi": "10.32604/cmc.2026.081311",
     "en": "A unified anomaly-detection framework couples Transformer global context with LSTM temporal modelling and evolutionary hyperparameter optimisation. Evaluation across four heterogeneous CIC datasets tests generalisation in conventional, IoT and vehicular network traffic.",
