@@ -2,6 +2,8 @@
 
 Bilingual academic website published with GitHub Pages. English is the default language and Spanish is available under `/es/`.
 
+The canonical academic signature is **Hernando-Galego, F.** (`F. Hernando-Galego` in display order). Earlier name variants are retained only as identity aliases for discovery and disambiguation.
+
 ## Publish with GitHub Pages
 
 1. Push this repository to `fhernandogallego/fhernandogallego.github.io` on the `main` branch.

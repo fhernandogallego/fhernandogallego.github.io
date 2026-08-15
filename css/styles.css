@@ -9,6 +9,8 @@ a:hover { color: var(--ink); }
 .language { position: absolute; top: 24px; right: 0; font: .82rem Arial, sans-serif; }
 h1 { max-width: 720px; margin: 0 0 8px; font-size: clamp(2.35rem, 7vw, 4.25rem); font-weight: 400; line-height: 1.05; letter-spacing: -.035em; }
 .role { margin: 0 0 18px; color: var(--muted); font-style: italic; }
+.academic-name { margin: -10px 0 18px; color: var(--muted); font: .78rem Arial, sans-serif; }
+.academic-name strong { color: var(--ink); font-weight: 600; }
 .intro > p:not(.role, .updated) { max-width: 650px; }
 nav { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 24px; font-family: Arial, sans-serif; font-size: .9rem; }
 .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); gap: 18px 24px; margin-top: 32px; }

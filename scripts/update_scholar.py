@@ -20,6 +20,7 @@ DATA_FILE = ROOT / "data" / "scholar.json"
 HISTORY_FILE = ROOT / "data" / "scholar-history.jsonl"
 SUMMARIES_FILE = ROOT / "data" / "publication-summaries.json"
 AUTHOR_ID = os.environ.get("SCHOLAR_AUTHOR_ID", "89e5aoQAAAAJ")
+ACADEMIC_NAME = "F. Hernando-Galego"
 PUBLICATIONS_BLOCK = re.compile(
     r"(?P<start>\s*<!-- scholar-publications:start -->).*?"
     r"(?P<end>\s*<!-- scholar-publications:end -->)",
@@ -54,6 +55,25 @@ def author_text(value: object) -> str:
     if isinstance(value, list):
         return ", ".join(str(author) for author in value)
     return str(value or "")
+
+
+def normalize_academic_name(value: str) -> str:
+    """Use the author's canonical academic signature in generated discovery text."""
+    normalized = value
+    for variant in (
+        "Francisco Hernando-Gallego",
+        "Francisco Hernando Gallego",
+        "F Hernando-Gallego",
+        "F. Hernando-Gallego",
+        "F Hernando-Galego",
+    ):
+        normalized = normalized.replace(variant, ACADEMIC_NAME)
+    return normalized
+
+
+def publication_authors(paper: dict) -> list[str]:
+    authors = normalize_academic_name(paper.get("authors") or ACADEMIC_NAME)
+    return [author.strip() for author in re.split(r"\s+and\s+", authors) if author.strip()]
 
 
 def publication_url(item: dict) -> str:
@@ -197,7 +217,7 @@ def render_publications_html(publications: list[dict], language: str) -> str:
 def render_publications_llms(publications: list[dict]) -> str:
     lines = []
     for paper in publications:
-        authors = f"{paper['authors']}. " if paper["authors"] else ""
+        authors = f"{' and '.join(publication_authors(paper))}. "
         year = f" ({paper['year']})" if paper["year"] else ""
         venue = f" {paper['venue']}" if paper["venue"] else ""
         lines.append(
@@ -225,7 +245,8 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
     slug = paper["slug"]
     summary = publication_summary(title, language, summaries)
     year = paper["year"] or "Undated"
-    authors = paper["authors"] or "Francisco Hernando-Gallego"
+    author_names = publication_authors(paper)
+    authors = " · ".join(author_names)
     venue = paper["venue"] or ("Registro de Google Scholar" if spanish else "Google Scholar record")
     canonical = f"https://www.fransdata.com/{'es/' if spanish else ''}publications/{slug}/"
     alternate = f"https://www.fransdata.com/{'' if spanish else 'es/'}publications/{slug}/"
@@ -233,15 +254,22 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
     doi = paper.get("doi", "")
     doi_url = f"https://doi.org/{doi}" if doi else ""
     description = summary or (
-        f"Ficha bibliográfica y citas de la publicación «{title}» de Francisco Hernando-Gallego."
+        f"Ficha bibliográfica y citas de la publicación «{title}» de {ACADEMIC_NAME}."
         if spanish else
-        f"Bibliographic and citation record for “{title}” by Francisco Hernando-Gallego."
+        f"Bibliographic and citation record for “{title}” by {ACADEMIC_NAME}."
     )
     schema = {
         "@context": "https://schema.org",
         "@type": "ScholarlyArticle",
         "headline": title,
-        "author": {"@type": "Person", "name": "Francisco Hernando Gallego", "url": "https://www.fransdata.com/"},
+        "author": [
+            {
+                "@type": "Person",
+                "name": author,
+                **({"url": "https://www.fransdata.com/"} if author == ACADEMIC_NAME else {}),
+            }
+            for author in author_names
+        ],
         "datePublished": paper["year"] or None,
         "description": summary or None,
         "url": canonical,
@@ -271,9 +299,13 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
             f'<section class="paper-summary"><h2>{labels["summary"]}</h2>'
             f'<p>{html.escape(summary)}</p><small>{labels["summary_note"]}</small></section>'
         )
+    citation_authors = "\n".join(
+        f'<meta name="citation_author" content="{html.escape(author, quote=True)}">'
+        for author in author_names
+    )
     citation_meta = (
         f'<meta name="citation_title" content="{html.escape(title, quote=True)}">\n'
-        '<meta name="citation_author" content="Francisco Hernando-Gallego">\n'
+        f'{citation_authors}\n'
         f'<meta name="citation_publication_date" content="{html.escape(str(year), quote=True)}">\n'
         f'<meta name="citation_public_url" content="{html.escape(canonical, quote=True)}">'
     )
