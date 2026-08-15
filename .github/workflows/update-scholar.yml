@@ -24,12 +24,10 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install dependencies
-        run: python -m pip install --disable-pip-version-check scholarly==1.7.11 requests==2.32.5
+        run: python -m pip install --disable-pip-version-check scholarly==1.7.11
       - name: Refresh Scholar data
         env:
           SCHOLAR_AUTHOR_ID: 89e5aoQAAAAJ
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/update_scholar.py
       - name: Commit updated public metrics
         run: |

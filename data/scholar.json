@@ -1,12 +1,379 @@
 {
-  "updated_at": "2026-08-14T00:00:00+00:00",
+  "updated_at": "2026-08-15T09:20:21+00:00",
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=89e5aoQAAAAJ",
-  "name": "Francisco Hernando Gallego",
-  "total_citations": null,
+  "name": "Francisco Hernando-Gallego",
+  "total_citations": 270,
+  "citations_5y": 229,
   "hindex": 8,
-  "i10index": null,
-  "citations_current_year": null,
-  "cites_per_year": {},
-  "publications": []
+  "hindex5y": 8,
+  "i10index": 7,
+  "i10index5y": 7,
+  "citations_current_year": 98,
+  "cites_per_year": {
+    "2016": 1,
+    "2017": 3,
+    "2018": 9,
+    "2019": 12,
+    "2020": 15,
+    "2021": 23,
+    "2022": 12,
+    "2023": 17,
+    "2024": 17,
+    "2025": 61,
+    "2026": 98
+  },
+  "publications": [
+    {
+      "title": "Physical layer security over fluid reconfigurable intelligent surface-assisted communication systems",
+      "authors": "",
+      "year": "2026",
+      "venue": "IEEE Wireless Communications Letters, 2026",
+      "citations": 16,
+      "author_pub_id": "89e5aoQAAAAJ:3fE2CSJIrl8C",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A3fE2CSJIrl8C"
+    },
+    {
+      "title": "Symmetry-Aware Optimized Fuzzy Deep Reinforcement Learning-GRU for Load Balancing in Smart Power Grids",
+      "authors": "",
+      "year": "2026",
+      "venue": "Symmetry 18 (2), 343, 2026",
+      "citations": 8,
+      "author_pub_id": "89e5aoQAAAAJ:Wp0gIr-vW9MC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AWp0gIr-vW9MC"
+    },
+    {
+      "title": "Multi-Criteria Decision-Making (MIVES) and Geographic Information Systems for Evaluating the Sustainability of Tourism Activities Around Costa Rica’s Protected Natural Areas",
+      "authors": "",
+      "year": "2026",
+      "venue": "Earth 7 (1), 28, 2026",
+      "citations": 1,
+      "author_pub_id": "89e5aoQAAAAJ:4DMP91E08xMC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A4DMP91E08xMC"
+    },
+    {
+      "title": "A Novel Evolutionary Optimized Transformer-Deep Reinforcement Learning Framework for False Data Injection Detection in Industry 4.0 Smart Water Infrastructures",
+      "authors": "",
+      "year": "2026",
+      "venue": "Computers, Materials and Continua 87 (2), 2026",
+      "citations": 1,
+      "author_pub_id": "89e5aoQAAAAJ:ZeXyd9-uunAC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AZeXyd9-uunAC"
+    },
+    {
+      "title": "Use of Machine Learning models as surrogate models for finding regions of structural properties of MOFs with high hydrogen storage capacities at room temperature and moderate pressures",
+      "authors": "A Granja-DelRío and F Hernando-Gallego and I Cabria",
+      "year": "2026",
+      "venue": "Chemical Physics, 113209, 2026",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:qUcmZB5y_30C",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0301010426001321"
+    },
+    {
+      "title": "Retroalimentación formativa con IA generativa en programación: diseño del protocolo y evaluación de resultados",
+      "authors": "",
+      "year": "2026",
+      "venue": "Actas de las Jenui 11, 297-305, 2026",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:-f6ydRqryjwC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A-f6ydRqryjwC"
+    },
+    {
+      "title": "HDAWN-HRDAE: A hybrid framework for the music genre classification with the dual temporal and frequency feature modeling",
+      "authors": "",
+      "year": "2026",
+      "venue": "Ain Shams Engineering Journal 17 (5), 104115, 2026",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:7PzlFSSx8tAC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A7PzlFSSx8tAC"
+    },
+    {
+      "title": "Graph-based temporal anomaly detection with self-supervised contrastive learning and dynamic adaptive thresholding for acoustic howling suppression",
+      "authors": "",
+      "year": "2026",
+      "venue": "Egyptian Informatics Journal 33, 100892, 2026",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:aqlVkmm33-oC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AaqlVkmm33-oC"
+    },
+    {
+      "title": "Diagnostic Driven Topology Adaptive Generative Adversarial Networks for Improved Breast Cancer Diagnosis",
+      "authors": "",
+      "year": "2026",
+      "venue": "Archives of Computational Methods in Engineering 33 (4), 4793-4825, 2026",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:Zph67rFs4hoC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AZph67rFs4hoC"
+    },
+    {
+      "title": "Continuous Fluid Antenna Sampling for Channel Estimation in Cell-Free Massive MIMO",
+      "authors": "",
+      "year": "2026",
+      "venue": "arXiv preprint arXiv:2602.16459, 2026",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:9ZlFYXVOiuMC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A9ZlFYXVOiuMC"
+    },
+    {
+      "title": "Adaptive acoustic feedback control in aphasia Therapy: A Graph-Based learning approach for Unintended resonance suppression in Mandarin (Chinese)-Speaking aphasic patients",
+      "authors": "",
+      "year": "2026",
+      "venue": "Egyptian Informatics Journal 33, 100908, 2026",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:QIV2ME_5wuYC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AQIV2ME_5wuYC"
+    },
+    {
+      "title": "A Novel Hybrid Evolutionary Transformer-Long Short-Term Memory Model for Unified Anomaly Detection in IoT and Cyber-Physical Networks",
+      "authors": "",
+      "year": "2026",
+      "venue": "Computers, Materials and Continua 88 (3), 2026",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:hFOr9nPyWt4C",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AhFOr9nPyWt4C"
+    },
+    {
+      "title": "A Hybrid Transformer-Generative Adversarial Network-Gated Recurrent Unit Model for Intelligent Load Balancing and Demand Forecasting in Smart Power Grids",
+      "authors": "",
+      "year": "2026",
+      "venue": "Electronics 15 (8), 1579, 2026",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:IWHjjKOFINEC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AIWHjjKOFINEC"
+    },
+    {
+      "title": "Generative adversarial and transformer network synergy for robust intrusion detection in IoT environments",
+      "authors": "",
+      "year": "2025",
+      "venue": "Future Internet 17 (6), 258, 2025",
+      "citations": 33,
+      "author_pub_id": "89e5aoQAAAAJ:_FxGoFyzp5QC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A_FxGoFyzp5QC"
+    },
+    {
+      "title": "An evolutionary deep reinforcement learning-based framework for efficient anomaly detection in smart power distribution grids",
+      "authors": "",
+      "year": "2025",
+      "venue": "Energies 18 (10), 2435, 2025",
+      "citations": 19,
+      "author_pub_id": "89e5aoQAAAAJ:WF5omc3nYNoC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AWF5omc3nYNoC"
+    },
+    {
+      "title": "UAV-relay assisted RSMA fluid antenna system: Outage probability analysis",
+      "authors": "",
+      "year": "2025",
+      "venue": "IEEE Wireless Communications Letters 14 (9), 2907-2911, 2025",
+      "citations": 18,
+      "author_pub_id": "89e5aoQAAAAJ:Y0pCki6q_DkC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AY0pCki6q_DkC"
+    },
+    {
+      "title": "Enhancing unmanned marine vehicle path planning: A fractal-enhanced chaotic grey wolf and differential evolution approach",
+      "authors": "",
+      "year": "2025",
+      "venue": "Knowledge-Based Systems 317, 113481, 2025",
+      "citations": 16,
+      "author_pub_id": "89e5aoQAAAAJ:YsMSGLbcyi4C",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AYsMSGLbcyi4C"
+    },
+    {
+      "title": "A hybrid bio-inspired approach for clustering and routing in UWSNs using MPA and HGS",
+      "authors": "",
+      "year": "2025",
+      "venue": "Sustainable Computing: Informatics and Systems 46, 101108, 2025",
+      "citations": 7,
+      "author_pub_id": "89e5aoQAAAAJ:zYLM7Y9cAGgC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AzYLM7Y9cAGgC"
+    },
+    {
+      "title": "Notion meta-learner: A technique for few-shot learning in music genre recognition",
+      "authors": "",
+      "year": "2025",
+      "venue": "Entertainment Computing 54, 100961, 2025",
+      "citations": 5,
+      "author_pub_id": "89e5aoQAAAAJ:eQOLeE2rZwMC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AeQOLeE2rZwMC"
+    },
+    {
+      "title": "A novel DRL-transformer framework for maximizing the sum rate in reconfigurable intelligent surface-assisted THz communication systems",
+      "authors": "",
+      "year": "2025",
+      "venue": "Applied Sciences 15 (17), 9435, 2025",
+      "citations": 4,
+      "author_pub_id": "89e5aoQAAAAJ:MXK_kJrjxJIC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AMXK_kJrjxJIC"
+    },
+    {
+      "title": "Secure Cooperative Dual-RIS-Aided V2V Communication: An Evolutionary Transformer–GRU Framework for Secrecy Rate Maximization in Vehicular Networks",
+      "authors": "",
+      "year": "2025",
+      "venue": "World Electric Vehicle Journal 16 (7), 396, 2025",
+      "citations": 3,
+      "author_pub_id": "89e5aoQAAAAJ:hqOjcs7Dif8C",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AhqOjcs7Dif8C"
+    },
+    {
+      "title": "Hybrid time series transformer–deep belief network for robust anomaly detection in mobile communication networks",
+      "authors": "",
+      "year": "2025",
+      "venue": "Symmetry 17 (11), 1800, 2025",
+      "citations": 3,
+      "author_pub_id": "89e5aoQAAAAJ:KlAtU1dfN6UC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AKlAtU1dfN6UC"
+    },
+    {
+      "title": "Unified Anomaly Detection in IoT and Cyber-Physical Networks Using Evo-Transformer-LSTM: Validation on Four CIC Benchmarks",
+      "authors": "",
+      "year": "2025",
+      "venue": "Preprints, 2025",
+      "citations": 1,
+      "author_pub_id": "89e5aoQAAAAJ:4TOpqqG69KYC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A4TOpqqG69KYC"
+    },
+    {
+      "title": "An Optimized DRL-GAN Approach for Robust Anomaly Detection in Multi-Scale Energy Systems: Insights from PSML and LEAD1. 0",
+      "authors": "",
+      "year": "2025",
+      "venue": "Energies 19 (1), 198, 2025",
+      "citations": 1,
+      "author_pub_id": "89e5aoQAAAAJ:qxL8FJ1GzNcC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AqxL8FJ1GzNcC"
+    },
+    {
+      "title": "A constant-time hardware architecture for the CSIDH key-exchange protocol",
+      "authors": "",
+      "year": "2025",
+      "venue": "arXiv preprint arXiv:2508.11082, 2025",
+      "citations": 1,
+      "author_pub_id": "89e5aoQAAAAJ:5nxA0vEk-isC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A5nxA0vEk-isC"
+    },
+    {
+      "title": "Uso de asistentes de IA en Programación Orientada a Objetos: impacto de una guía de buenas prácticas en la autopercepción y estrategias de los estudiantes",
+      "authors": "",
+      "year": "2025",
+      "venue": "Actas de las Jornadas sobre la Enseñanza Universitaria de la Informática …, 2025",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:kNdYIx-mwKoC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AkNdYIx-mwKoC"
+    },
+    {
+      "title": "Unified Anomaly Detection in IoT and Cyber-Physical Networks Using Evo-Transformer-LSTM: Validation on Four CIC Benchmarks",
+      "authors": "M Mahmoudi and N Serrano and F Hernando-Gallego and D Martín",
+      "year": "2025",
+      "venue": "",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:dhFuZR0502QC",
+      "url": "https://europepmc.org/article/ppr/ppr1132312"
+    },
+    {
+      "title": "An Optimized DRL-GAN Approach for Robust Anomaly Detection in Multi-Scale Energy Systems: Insights from PSML and LEAD1. 0",
+      "authors": "MK Dashliboroun and PS Moghaddam and N Serrano and F Hernando-Gallego and D Martín and JV Álvarez-Bravo",
+      "year": "2025",
+      "venue": "",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:mVmsd5A6BfQC",
+      "url": "https://europepmc.org/article/ppr/ppr1130820"
+    },
+    {
+      "title": "A Novel Evolutionary Transformer‐Deep Reinforcement Learning Framework for False Data Injection Detection in Industry 4.0 Smart Water Infrastructures",
+      "authors": "",
+      "year": "2025",
+      "venue": "Preprints, 2025",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:_kc_bZDykSQC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A_kc_bZDykSQC"
+    },
+    {
+      "title": "Análisis de una experiencia de utilización de asistentes de IA en Programación Orientada a Objetos",
+      "authors": "",
+      "year": "2024",
+      "venue": "Asociación de Enseñantes Universitarios de la Informática (AENUI), 2024",
+      "citations": 1,
+      "author_pub_id": "89e5aoQAAAAJ:2osOgNQ5qMEC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A2osOgNQ5qMEC"
+    },
+    {
+      "title": "Identificación de buenas prácticas en el uso de asistentes inteligentes en el proceso de enseñanza y aprendizaje de la programación de ordenadores",
+      "authors": "",
+      "year": "2024",
+      "venue": "Innovación docente en Educación Superior. El poder de innovar: experiencias …, 2024",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:LkGwnXOMwfcC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3ALkGwnXOMwfcC"
+    },
+    {
+      "title": "Gamificación en Parques y Jardines: ornamental plants-kahoot y ruletas-para el reconocimiento de las especies ornamentales más típicas",
+      "authors": "",
+      "year": "2024",
+      "venue": "28th International Congress on Project Management and Engineering, 2024",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:IjCSPb-OGe4C",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AIjCSPb-OGe4C"
+    },
+    {
+      "title": "Stress level assessment with non-intrusive sensors",
+      "authors": "",
+      "year": "2018",
+      "venue": "Universidad Carlos III de Madrid, 2018",
+      "citations": 2,
+      "author_pub_id": "89e5aoQAAAAJ:u5HHmVD_uO8C",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3Au5HHmVD_uO8C"
+    },
+    {
+      "title": "Stress level assessment with non-intrusive sensors",
+      "authors": "Francisco Hernando Gallego",
+      "year": "2018",
+      "venue": "",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:hC7cP41nSMkC",
+      "url": "https://e-archivo.uc3m.es/entities/publication/0e2f1356-93d3-4157-a919-7fa80c9445ee"
+    },
+    {
+      "title": "Feature extraction of galvanic skin responses by nonnegative sparse deconvolution",
+      "authors": "",
+      "year": "2017",
+      "venue": "IEEE journal of biomedical and health informatics 22 (5), 1385-1394, 2017",
+      "citations": 106,
+      "author_pub_id": "89e5aoQAAAAJ:9yKSN-GCB0IC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A9yKSN-GCB0IC"
+    },
+    {
+      "title": "Novel orthogonal multi-sequences for an efficient jamming on the UMTS signal",
+      "authors": "",
+      "year": "2016",
+      "venue": "EURASIP Journal on Wireless Communications and Networking 2016, 1-8, 2016",
+      "citations": 2,
+      "author_pub_id": "89e5aoQAAAAJ:u-x6o8ySG0sC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3Au-x6o8ySG0sC"
+    },
+    {
+      "title": "Individual performance calibration using physiological stress signals",
+      "authors": "",
+      "year": "2015",
+      "venue": "arXiv preprint arXiv:1507.03482, 2015",
+      "citations": 22,
+      "author_pub_id": "89e5aoQAAAAJ:qjMakFHDy7sC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AqjMakFHDy7sC"
+    },
+    {
+      "title": "Método y dispositivo para la inhibición de señales de telefonía móvil",
+      "authors": "",
+      "year": "2012",
+      "venue": "ES Patent ES2455067B1, 2012",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:UeHWp8X0CEIC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AUeHWp8X0CEIC"
+    },
+    {
+      "title": "Orthogonal Multi-sequences for efficiently jamming the UMTS signal",
+      "authors": "Víctor P Gil Jiménez and Ana García Armada and Francisco Hernando Gallego and Nieves Sidney González Pizarro",
+      "year": "",
+      "venue": "",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:L8Ckcad2t8MC",
+      "url": "https://scholar.google.com/scholar?cluster=2847804695877589008&hl=en&oi=scholarr"
+    }
+  ]
 }

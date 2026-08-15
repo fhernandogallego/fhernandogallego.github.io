@@ -19,38 +19,26 @@ The workflow [`.github/workflows/update-scholar.yml`](.github/workflows/update-s
 It performs the following tasks:
 
 1. Reads the public Scholar profile `89e5aoQAAAAJ`.
-2. Updates `data/scholar.json` and appends a snapshot to `data/scholar-history.jsonl`.
-3. Writes the latest citation and h-index figures into both language versions and `llms.txt`.
+2. Downloads every publication and all available citation, h-index and i10-index metrics, including five-year values.
+3. Rebuilds the publication lists in both languages, updates `data/scholar.json`, appends a historical snapshot and refreshes `llms.txt`.
 4. Commits and pushes changed public metrics to `main`.
-5. Optionally sends a Telegram notification when citations increase.
 
 When the Scholar workflow finishes, `.github/workflows/deploy-pages.yml` publishes the resulting repository state. It also deploys after ordinary pushes to `main`.
 
 Google Scholar may occasionally block automated requests from shared GitHub Actions IP addresses. A failed run does not overwrite the last valid data. If blocks become frequent, use a stable proxy or a supported scholarly-data API rather than increasing the request frequency.
-
-## Telegram secrets
-
-Never store the bot token or chat ID in the repository. Create these GitHub Actions secrets under **Settings → Secrets and variables → Actions → New repository secret**:
-
-- `TELEGRAM_BOT_TOKEN`
-- `TELEGRAM_CHAT_ID`
-
-The token previously pasted into a script should be revoked with BotFather and replaced before configuring the secret.
 
 ## Run the updater locally
 
 Install the pinned dependencies used by the workflow and execute:
 
 ```bash
-python -m pip install scholarly==1.7.11 requests==2.32.5
+python -m pip install scholarly==1.7.11
 python scripts/update_scholar.py
 ```
-
-For optional Telegram notifications, provide `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` as environment variables. Do not add them to a committed file.
 
 ## Discovery files
 
 - `sitemap.xml` and `robots.txt` support web crawling.
 - `llms.txt` provides a compact, machine-readable academic identity and selected bibliography.
-- Visible publication summaries, DOI links and Schema.org markup improve semantic discovery.
+- A compact publication list, DOI links and Schema.org markup improve semantic discovery without making the page text-heavy.
 - The University of Valladolid portal, ORCID and Google Scholar remain the authoritative external profiles.
