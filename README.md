@@ -41,6 +41,16 @@ python scripts/enrich_publications.py
 python scripts/update_scholar.py --render-only
 ```
 
+The existing server bot can publish the lightweight JSON snapshot it already writes without querying Scholar a second time:
+
+```bash
+python scripts/update_scholar.py --snapshot-file /absolute/path/to/scholar_state.json
+python scripts/enrich_publications.py
+python scripts/update_scholar.py --render-only
+```
+
+The importer preserves verified authors, venues and URLs from the previous website snapshot, while accepting new citation totals and newly discovered profile publications from the bot.
+
 ## Discovery files
 
 - `sitemap.xml` and `robots.txt` support web crawling.

@@ -228,6 +228,58 @@ def fetch_snapshot(previous: dict | None = None) -> dict:
     }
 
 
+def import_snapshot(path: Path, previous: dict | None) -> dict:
+    """Convert the lightweight snapshot produced by the existing server bot."""
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    previous = previous or {}
+    previous_publications = previous.get("publications", [])
+    previous_by_id = {
+        paper.get("author_pub_id"): paper
+        for paper in previous_publications
+        if paper.get("author_pub_id")
+    }
+    publications = []
+    for item in raw.get("publications", []):
+        publication_id = str(item.get("author_pub_id") or "")
+        prior = previous_by_id.get(publication_id, {})
+        paper = {
+            "title": str(item.get("title") or prior.get("title") or "Untitled"),
+            "authors": author_text(item.get("authors") or prior.get("authors")),
+            "year": str(item.get("year") or prior.get("year") or ""),
+            "venue": str(item.get("venue") or prior.get("venue") or ""),
+            "citations": as_int(item.get("citations")),
+            "author_pub_id": publication_id,
+            "url": str(item.get("url") or prior.get("url") or publication_url(item)),
+        }
+        if prior.get("slug"):
+            paper["slug"] = prior["slug"]
+        publications.append(paper)
+
+    publications.sort(
+        key=lambda paper: (as_int(paper["year"]), paper["citations"], paper["title"]),
+        reverse=True,
+    )
+    ensure_slugs(publications)
+    snapshot = {
+        "updated_at": str(raw.get("updated_at") or raw.get("timestamp") or datetime.now(timezone.utc).isoformat(timespec="seconds")),
+        "source": "Google Scholar",
+        "profile": str(raw.get("profile") or previous.get("profile") or f"https://scholar.google.com/citations?user={AUTHOR_ID}"),
+        "name": str(raw.get("name") or previous.get("name") or "Francisco Hernando-Gallego"),
+        "cites_per_year": raw.get("cites_per_year") or previous.get("cites_per_year", {}),
+        "publications": publications,
+    }
+    for key in METRIC_KEYS:
+        snapshot[key] = as_int(raw[key] if key in raw else previous.get(key))
+    return snapshot
+
+
+def save_snapshot(snapshot: dict) -> None:
+    DATA_FILE.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    with HISTORY_FILE.open("a", encoding="utf-8") as history:
+        history.write(json.dumps(snapshot, ensure_ascii=False) + "\n")
+    update_public_pages(snapshot)
+
+
 def validate_snapshot(snapshot: dict, previous: dict | None) -> None:
     """Refuse incomplete Scholar responses instead of publishing false zeroes."""
     if not snapshot["publications"]:
@@ -594,13 +646,18 @@ def main() -> None:
         print(f"Rendered {len(snapshot['publications'])} publications from stored data")
         return
     previous = load_previous()
-    snapshot = fetch_snapshot(previous)
+    if "--snapshot-file" in sys.argv:
+        option_index = sys.argv.index("--snapshot-file")
+        try:
+            snapshot_path = Path(sys.argv[option_index + 1]).expanduser()
+        except IndexError as error:
+            raise RuntimeError("--snapshot-file requires a path") from error
+        snapshot = import_snapshot(snapshot_path, previous)
+    else:
+        snapshot = fetch_snapshot(previous)
     apply_curated_metadata(snapshot["publications"], load_summaries())
     validate_snapshot(snapshot, previous)
-    DATA_FILE.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    with HISTORY_FILE.open("a", encoding="utf-8") as history:
-        history.write(json.dumps(snapshot, ensure_ascii=False) + "\n")
-    update_public_pages(snapshot)
+    save_snapshot(snapshot)
     print(
         f"Scholar updated: {len(snapshot['publications'])} publications, "
         f"{snapshot['total_citations']} citations, h-index {snapshot['hindex']}"

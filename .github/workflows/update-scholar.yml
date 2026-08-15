@@ -18,17 +18,23 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Check out website
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Install dependencies
         run: python -m pip install --disable-pip-version-check scholarly==1.7.11
       - name: Refresh Scholar data
+        id: scholar
+        continue-on-error: true
+        timeout-minutes: 3
         env:
           SCHOLAR_AUTHOR_ID: 89e5aoQAAAAJ
         run: python scripts/update_scholar.py
+      - name: Report Scholar fallback
+        if: steps.scholar.outcome == 'failure'
+        run: echo "::warning::Google Scholar was unavailable; keeping the last valid snapshot and retrying on the next run."
       - name: Enrich new publications from scholarly indexes
         run: |
           python scripts/enrich_publications.py
