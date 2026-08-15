@@ -708,7 +708,7 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
   <link rel="alternate" hreflang="en" href="https://www.fransdata.com/publications/{slug}/">
   <link rel="alternate" hreflang="es" href="https://www.fransdata.com/es/publications/{slug}/">
   <link rel="alternate" hreflang="x-default" href="https://www.fransdata.com/publications/{slug}/">
-  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-person-computer.png">
   <link rel="stylesheet" href="/css/styles.css">
   {citation_meta}
   <script type="application/ld+json">{schema_json}</script>
