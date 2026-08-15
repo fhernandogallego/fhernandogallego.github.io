@@ -33,6 +33,12 @@ Founder: Fransdata Tech Ventures
 - Signal processing and physiological sensing
 - Generative AI in computer science education
 
+## Academic activity
+- Supervised bachelor's theses (16, grouped by year): https://www.fransdata.com/supervision/
+- Research, knowledge-transfer and teaching projects (6 current or recent): https://www.fransdata.com/projects/
+- Spanish versions: https://www.fransdata.com/es/supervision/ and https://www.fransdata.com/es/projects/
+- Source for supervision and projects: official CVN generated 14 August 2026
+
 ## Publications (Google Scholar)
         <!-- scholar-publications:start -->
 - "Physical layer security over fluid reconfigurable intelligent surface-assisted communication systems" (2026). IEEE Wireless Communications Letters, 2026 Google Scholar citations: 16. URL: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A3fE2CSJIrl8C

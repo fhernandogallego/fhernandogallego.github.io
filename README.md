@@ -19,7 +19,7 @@ The workflow [`.github/workflows/update-scholar.yml`](.github/workflows/update-s
 It performs the following tasks:
 
 1. Reads the public Scholar profile `89e5aoQAAAAJ`.
-2. Downloads every publication and all available citation, h-index and i10-index metrics, including five-year values.
+2. Downloads the complete publication list and all available citation, h-index and i10-index metrics, including five-year values. Any new work appearing on the profile is therefore added automatically.
 3. Rebuilds the publication lists and the individual bilingual publication pages, updates `data/scholar.json`, appends a historical snapshot and refreshes `llms.txt` and `sitemap.xml`.
 4. Commits and pushes changed public metrics to `main`.
 
@@ -44,3 +44,4 @@ python scripts/update_scholar.py
 - `data/publication-summaries.json` stores original, curated summaries and verified DOI values separately from third-party publisher abstracts.
 - The homepage stays compact while publication pages provide richer machine-readable context.
 - The University of Valladolid portal, ORCID and Google Scholar remain the authoritative external profiles.
+- Bilingual pages list supervised bachelor's theses and current research, knowledge-transfer and teaching-innovation projects from the CVN dated 14 August 2026.

@@ -334,6 +334,10 @@ def update_sitemap(publications: list[dict]) -> None:
     urls = [
         ("https://www.fransdata.com/", "1.0"),
         ("https://www.fransdata.com/es/", "0.9"),
+        ("https://www.fransdata.com/supervision/", "0.7"),
+        ("https://www.fransdata.com/es/supervision/", "0.7"),
+        ("https://www.fransdata.com/projects/", "0.7"),
+        ("https://www.fransdata.com/es/projects/", "0.7"),
     ]
     for paper in publications:
         urls.extend(
