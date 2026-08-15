@@ -12,6 +12,19 @@ h1 { max-width: 720px; margin: 0 0 8px; font-size: clamp(2rem, 5vw, 3.25rem); fo
 .academic-name { margin: -10px 0 18px; color: var(--muted); font: .78rem Arial, sans-serif; }
 .academic-name strong { color: var(--ink); font-weight: 600; }
 .intro > p:not(.role, .updated) { max-width: 650px; }
+.intro > p:not(.role, .updated, .academic-name),
+.paper-summary p,
+.archive-header p,
+.archive-list p,
+.archive-note,
+.jcr-status,
+.report-status,
+.journal-missing,
+.journal-indicators small {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
 nav { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 24px; font-family: Arial, sans-serif; font-size: .9rem; }
 .scholar-overview { display: grid; grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr); gap: 48px; padding: 36px 0 40px; border-bottom: 1px solid var(--line); }
 .metrics-panel { min-width: 0; }
