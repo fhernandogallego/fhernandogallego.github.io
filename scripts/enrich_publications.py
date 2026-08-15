@@ -75,7 +75,7 @@ def query_crossref(title: str) -> list[dict]:
             "mailto": CONTACT_EMAIL,
             "select": (
                 "DOI,title,author,container-title,publisher,published-print,"
-                "published-online,issued,created,type,URL,abstract,volume,issue,page,link"
+                "published-online,issued,created,type,URL,abstract,volume,issue,page,link,ISSN"
             ),
         }
     )
@@ -224,6 +224,7 @@ def crossref_record(candidate: dict, score: float) -> dict:
         "doi": html.unescape(str(candidate.get("DOI") or "")),
         "authors": authors,
         "journal": html.unescape(str((candidate.get("container-title") or [""])[0])),
+        "issns": [str(value) for value in candidate.get("ISSN", []) if value],
         "publisher": html.unescape(str(candidate.get("publisher") or "")),
         "published": issued_date(candidate),
         "volume": str(candidate.get("volume") or ""),

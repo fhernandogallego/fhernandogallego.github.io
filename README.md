@@ -23,8 +23,9 @@ It performs the following tasks:
 1. Reads the public Scholar profile `89e5aoQAAAAJ`.
 2. Downloads the complete publication list and all available citation, h-index and i10-index metrics, including five-year values. Any new work appearing on the profile is therefore added automatically.
 3. Enriches new or unresolved records with conservatively matched Crossref, OpenAlex and arXiv metadata, including DOI, complete authorship, open-access locations and journal fields.
-4. Rebuilds the publication lists and the individual bilingual publication pages, updates `data/scholar.json`, appends a historical snapshot and refreshes `llms.txt` and `sitemap.xml`.
-5. Commits and pushes changed public metrics to `main`.
+4. Matches journal articles against the repository's CiteScore 2025 catalogue and 2017–2019 bibliometric-behaviour report. New Scholar articles therefore receive journal indicators automatically after their journal metadata is resolved.
+5. Rebuilds the publication lists and the individual bilingual publication pages, updates `data/scholar.json`, appends a historical snapshot and refreshes `llms.txt` and `sitemap.xml`.
+6. Commits and pushes changed public metrics to `main`.
 
 When the Scholar workflow finishes, `.github/workflows/deploy-pages.yml` publishes the resulting repository state. It also deploys after ordinary pushes to `main`.
 
@@ -50,6 +51,13 @@ python scripts/update_scholar.py --render-only
 ```
 
 The importer preserves verified authors, venues and URLs from the previous website snapshot, while accepting new citation totals and newly discovered profile publications from the bot.
+
+## Journal indicators
+
+- `data/citescore-2025.json.gz` is a compact repository copy of the supplied **Scopus CiteScore 2025** workbook: 32,089 journals with CiteScore, quartiles, category ranks, percentiles and Top 10% flags. CiteScore is not Clarivate JCR, so the site explicitly marks JCR status as unverified instead of inferring it.
+- `data/journal-behaviour-2017-2019.json` contains the 1,107 journal names transcribed in the supplied 2021 independent report. The report concerns non-standard self-citation and/or citable-item behaviour in 2017–2019; it is not described as an official ANECA blacklist.
+- The homepage displays only the best CiteScore quartile and a compact report marker. Each publication page lists every Scopus category and rank, the Top 10% result, source wording and the report caveat.
+- `scripts/import_journal_data.py` reproducibly regenerates both repository datasets from the original workbook and Markdown report. `scripts/journal_data.py` performs conservative exact title/ISSN matching at render time, including for future Scholar publications.
 
 ## Discovery files
 

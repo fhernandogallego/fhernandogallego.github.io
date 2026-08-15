@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
 
-from scholarly import scholarly
+from journal_data import attach_journal_indicators
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -146,7 +146,7 @@ def apply_curated_metadata(publications: list[dict], summaries: dict) -> None:
         if record.get("status") in {"matched", "curated"}:
             for key in (
                 "doi", "journal", "publisher", "published", "volume", "issue", "pages", "type",
-                "openalex_id", "open_access_url", "repository_url",
+                "issns", "openalex_id", "open_access_url", "repository_url",
             ):
                 if record.get(key):
                     paper[key] = record[key]
@@ -162,6 +162,8 @@ def apply_curated_metadata(publications: list[dict], summaries: dict) -> None:
 
 def fetch_snapshot(previous: dict | None = None) -> dict:
     """Download the complete profile and normalize it for the static website."""
+    from scholarly import scholarly
+
     author = scholarly.fill(
         scholarly.search_author_id(AUTHOR_ID),
         sections=["basics", "indices", "counts", "publications"],
@@ -312,13 +314,47 @@ def render_publications_html(publications: list[dict], language: str) -> str:
         publication_id = html.escape(paper.get("author_pub_id", ""), quote=True)
         citations = paper["citations"]
         metadata = f"{venue} · " if venue else ""
+        indicators = paper.get("journal_indicators") or {}
+        citescore = indicators.get("citescore") or {}
+        indicator_html = ""
+        if citescore.get("best_quartile"):
+            quartile = html.escape(citescore["best_quartile"])
+            quartile_title = (
+                "Mejor cuartil CiteScore 2025 entre las categorías de Scopus"
+                if language == "es" else
+                "Best CiteScore 2025 quartile across Scopus categories"
+            )
+            indicator_html += f'<span class="quartile-badge" title="{quartile_title}">{quartile}</span>'
+        if indicators:
+            listed = indicators.get("behaviour_listed", False)
+            marker = "⚠" if listed else "○"
+            marker_class = "report-listed" if listed else "report-clear"
+            if language == "es":
+                marker_title = (
+                    "Incluida en el informe bibliométrico aportado sobre comportamiento no estándar; no es un veto oficial de ANECA"
+                    if listed else
+                    "No identificada en el informe bibliométrico aportado; no equivale a una aprobación de ANECA"
+                )
+            else:
+                marker_title = (
+                    "Included in the supplied non-standard-behaviour report; this is not an official ANECA ban"
+                    if listed else
+                    "Not identified in the supplied bibliometric report; this is not an ANECA endorsement"
+                )
+            indicator_html += (
+                f'<span class="journal-report-marker {marker_class}" role="img" '
+                f'aria-label="{html.escape(marker_title, quote=True)}" '
+                f'title="{html.escape(marker_title, quote=True)}">{marker}</span>'
+            )
+        if indicator_html:
+            indicator_html = f'<span class="journal-flags">{indicator_html}</span>'
         scholar_label = "Google Scholar"
         rows.append(
             f'        <li class="publication" data-year="{data_year}" data-citations="{citations}" '
             f'data-scholar-id="{publication_id}" itemscope itemtype="https://schema.org/ScholarlyArticle">'
             f'<span class="pub-year" itemprop="datePublished">{year}</span><div>'
             f'<a class="pub-title" itemprop="url" href="{detail_url}"><span itemprop="headline">{title}</span></a>'
-            f'<p class="pub-doi">{metadata}<a href="{url}">{scholar_label}</a>'
+            f'<p class="pub-doi">{metadata}{indicator_html}<a href="{url}">{scholar_label}</a>'
             f'<span class="citation-live" data-scholar-citations>{citations}</span></p></div></li>'
         )
     return "\n".join(rows)
@@ -331,9 +367,24 @@ def render_publications_llms(publications: list[dict]) -> str:
         year = f" ({paper['year']})" if paper["year"] else ""
         venue = f" {paper['venue']}" if paper["venue"] else ""
         doi = f" DOI: https://doi.org/{paper['doi']}." if paper.get("doi") else ""
+        indicators = paper.get("journal_indicators") or {}
+        citescore = indicators.get("citescore") or {}
+        journal_facts = ""
+        if citescore:
+            ranks = "; ".join(
+                f"{category['name']}: {category['rank']}/{category['rank_out_of']} ({category['quartile']})"
+                for category in citescore.get("categories", [])
+            )
+            journal_facts += (
+                f" Scopus CiteScore 2025: {citescore.get('citescore')}; "
+                f"best quartile: {citescore.get('best_quartile')}; category ranks: {ranks}."
+            )
+        if indicators:
+            status = "listed" if indicators.get("behaviour_listed") else "not identified"
+            journal_facts += f" Journal status in the supplied 2017-2019 non-standard-behaviour report: {status}."
         lines.append(
             f"- {authors}\"{paper['title']}\"{year}.{venue} "
-            f"Google Scholar citations: {paper['citations']}.{doi} URL: {paper['url']}"
+            f"Google Scholar citations: {paper['citations']}.{doi}{journal_facts} URL: {paper['url']}"
         )
     return "\n".join(lines)
 
@@ -413,6 +464,8 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
         if spanish else
         f"Bibliographic and citation record for “{title}” by {ACADEMIC_NAME}."
     )
+    indicators = paper.get("journal_indicators") or {}
+    citescore = indicators.get("citescore") or {}
     schema = {
         "@context": "https://schema.org",
         "@type": "ScholarlyArticle",
@@ -437,8 +490,29 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
                 paper.get("repository_url", ""),
             ) if url
         ],
-        "isPartOf": {"@type": "Periodical", "name": venue},
+        "isPartOf": {"@type": "Periodical", "name": paper.get("journal") or venue},
     }
+    if citescore:
+        schema["additionalProperty"] = [
+            {
+                "@type": "PropertyValue",
+                "name": "Scopus CiteScore 2025",
+                "value": citescore.get("citescore"),
+            },
+            {
+                "@type": "PropertyValue",
+                "name": "Best Scopus CiteScore quartile 2025",
+                "value": citescore.get("best_quartile"),
+            },
+            *[
+                {
+                    "@type": "PropertyValue",
+                    "name": f"Scopus category rank: {category['name']}",
+                    "value": f"{category['rank']}/{category['rank_out_of']} ({category['quartile']})",
+                }
+                for category in citescore.get("categories", [])
+            ],
+        ]
     schema = {key: value for key, value in schema.items() if value is not None}
     schema_json = json.dumps(schema, ensure_ascii=False).replace("</", "<\\/")
     labels = {
@@ -457,11 +531,46 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
         "open": "Versión de acceso abierto" if spanish else "Open-access version",
         "repository": "Registro en repositorio" if spanish else "Repository record",
         "language": "English" if spanish else "Español",
+        "journal_indicators": "Indicadores de la revista" if spanish else "Journal indicators",
+        "citescore": "CiteScore 2025 (Scopus)",
+        "best_quartile": "Mejor cuartil" if spanish else "Best quartile",
+        "top": "Top 10 % en alguna categoría" if spanish else "Top 10% in any category",
+        "positions": "Posiciones por categoría" if spanish else "Positions by category",
+        "scopus_source": "Fuente en Scopus" if spanish else "Scopus source",
+        "jcr": "JCR (Clarivate)",
+        "jcr_unverified": (
+            "No verificado: el fichero aportado es CiteScore de Scopus, no JCR."
+            if spanish else
+            "Not verified: the supplied ranking file is Scopus CiteScore, not JCR."
+        ),
+        "listed_report": (
+            "Incluida en el informe aportado sobre comportamiento bibliométrico no estándar (2017–2019)."
+            if spanish else
+            "Included in the supplied report on non-standard bibliometric behaviour (2017–2019)."
+        ),
+        "not_listed_report": (
+            "No identificada en el informe aportado sobre comportamiento bibliométrico no estándar (2017–2019)."
+            if spanish else
+            "Not identified in the supplied report on non-standard bibliometric behaviour (2017–2019)."
+        ),
+        "report_note": (
+            "El informe es un análisis independiente publicado en 2021; no es una lista oficial de veto o aprobación de ANECA."
+            if spanish else
+            "The report is an independent analysis published in 2021; it is not an official ANECA ban or endorsement list."
+        ),
+        "not_found": (
+            "Revista no encontrada en el fichero CiteScore 2025 aportado."
+            if spanish else
+            "Journal not found in the supplied CiteScore 2025 file."
+        ),
+        "percentile": "percentil" if spanish else "percentile",
+        "yes": "Sí" if spanish else "Yes",
+        "no": "No" if spanish else "No",
     }
     summary_html = ""
     if summary:
         summary_html = (
-            f'<section class="paper-summary"><h2>{labels["summary"]}</h2>'
+            f'      <section class="paper-summary"><h2>{labels["summary"]}</h2>'
             f'<p>{html.escape(summary)}</p><small>{labels["summary_note"]}</small></section>'
         )
     citation_authors = "\n".join(
@@ -499,6 +608,45 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
         f'<a href="{html.escape(paper["repository_url"], quote=True)}">{labels["repository"]} ↗</a> · '
         if paper.get("repository_url") else ""
     )
+    journal_indicators_html = ""
+    if indicators:
+        behaviour = indicators.get("behaviour") or {}
+        report_status = labels["listed_report"] if behaviour else labels["not_listed_report"]
+        report_marker = "⚠" if behaviour else "○"
+        report_class = "report-listed" if behaviour else "report-clear"
+        metrics_html = f'<p class="journal-missing">{labels["not_found"]}</p>'
+        if citescore:
+            category_rows = []
+            for category in citescore.get("categories", []):
+                top_label = " · Top 10%" if category.get("top_10_percent") else ""
+                category_rows.append(
+                    '<li>'
+                    f'<strong>{html.escape(str(category["name"]))}</strong>'
+                    f'<span>{category["rank"]}/{category["rank_out_of"]} · '
+                    f'{html.escape(str(category["quartile"]))} · {labels["percentile"]} '
+                    f'{category["percentile"]}{top_label}</span>'
+                    '</li>'
+                )
+            categories = "".join(category_rows)
+            metrics_html = (
+                '<div class="journal-summary">'
+                f'<p><span>{labels["citescore"]}</span><strong>{citescore.get("citescore", "—")}</strong></p>'
+                f'<p><span>{labels["best_quartile"]}</span><strong class="quartile-badge">'
+                f'{html.escape(citescore.get("best_quartile") or "—")}</strong></p>'
+                f'<p><span>{labels["top"]}</span><strong>'
+                f'{labels["yes"] if citescore.get("top_10_percent") else labels["no"]}</strong></p>'
+                '</div>'
+                f'<h3>{labels["positions"]}</h3><ul class="journal-categories">{categories}</ul>'
+                f'<p class="journal-source"><a href="{html.escape(citescore.get("url") or "", quote=True)}">'
+                f'{labels["scopus_source"]} ↗</a></p>'
+            )
+        journal_indicators_html = (
+            f'      <section class="journal-indicators"><h2>{labels["journal_indicators"]}</h2>'
+            f'{metrics_html}'
+            f'<p class="jcr-status"><strong>{labels["jcr"]}:</strong> {labels["jcr_unverified"]}</p>'
+            f'<p class="report-status {report_class}"><span aria-hidden="true">{report_marker}</span> '
+            f'{report_status}</p><small>{labels["report_note"]}</small></section>'
+        )
     return f'''<!doctype html>
 <html lang="{language}">
 <head>
@@ -527,7 +675,8 @@ def render_publication_page(paper: dict, language: str, summaries: dict) -> str:
         <div><dt>{labels['published']}</dt><dd>{html.escape(venue)}</dd></div>
         <div><dt>{labels['citations']}</dt><dd>{paper['citations']}</dd></div>
       </dl>
-      {summary_html}
+{journal_indicators_html}
+{summary_html}
       <p class="paper-source">{doi_link}{open_link}{repository_link}<a href="{html.escape(scholar_url, quote=True)}">{labels['source']} ↗</a></p>
     </article>
   </main>
@@ -578,6 +727,7 @@ def update_public_pages(snapshot: dict) -> None:
     ensure_slugs(snapshot["publications"])
     summaries = load_summaries()
     apply_curated_metadata(snapshot["publications"], summaries)
+    attach_journal_indicators(snapshot["publications"])
     for relative, language in (("index.html", "en"), ("es/index.html", "es")):
         path = ROOT / relative
         text = path.read_text(encoding="utf-8")
