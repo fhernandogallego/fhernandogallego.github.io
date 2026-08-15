@@ -47,7 +47,7 @@ footer { padding: 24px 0 36px; color: var(--muted); border-top: 1px solid var(--
 .paper-page { padding: 36px 0 72px; }
 .paper-nav { justify-content: space-between; margin: 0 0 72px; }
 .paper-detail { max-width: 760px; }
-.paper-detail h1 { margin-bottom: 40px; font-size: clamp(2rem, 6vw, 3.6rem); }
+.paper-detail h1 { margin-bottom: 32px; max-width: 760px; font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.25; letter-spacing: -.01em; }
 .paper-kicker { color: var(--muted); font: .78rem Arial, sans-serif; text-transform: uppercase; letter-spacing: .06em; }
 .paper-detail dl { margin: 0; border-top: 1px solid var(--line); }
 .paper-detail dl div { display: grid; grid-template-columns: 150px 1fr; gap: 20px; padding: 15px 0; border-bottom: 1px solid var(--line); }
