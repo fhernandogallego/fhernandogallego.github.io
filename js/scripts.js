@@ -67,9 +67,9 @@ fetch(scholarDataUrl, { cache: 'no-store' })
         citations = document.createElement('span');
         citations.className = 'citation-live';
         citations.dataset.scholarCitations = '';
-        publication.querySelector('.pub-doi')?.append(citations);
+        publication.querySelector('.pub-citations a')?.append(citations);
       }
-      citations.textContent = `${paper.citations} ${spanish ? 'citas' : 'citations'}`;
+      citations.textContent = new Intl.NumberFormat(document.documentElement.lang).format(paper.citations);
     });
     sortPublications(publicationSort?.value || 'citations');
   })

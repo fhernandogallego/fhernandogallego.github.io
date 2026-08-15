@@ -29,6 +29,11 @@ PUBLICATIONS_BLOCK = re.compile(
     r"(?P<end>\s*<!-- scholar-publications:end -->)",
     re.DOTALL,
 )
+CITATIONS_CHART_BLOCK = re.compile(
+    r"(?P<start>\s*<!-- scholar-chart:start -->).*?"
+    r"(?P<end>\s*<!-- scholar-chart:end -->)",
+    re.DOTALL,
+)
 METRIC_KEYS = (
     "total_citations",
     "citations_5y",
@@ -308,12 +313,16 @@ def render_publications_html(publications: list[dict], language: str) -> str:
         title = html.escape(paper["title"])
         year = html.escape(paper["year"] or "—")
         data_year = as_int(paper["year"])
-        venue = html.escape(paper["venue"])
+        venue = html.escape(paper.get("journal") or paper["venue"])
         url = html.escape(scholar_publication_url(paper), quote=True)
         detail_url = html.escape(f"publications/{paper['slug']}/", quote=True)
         publication_id = html.escape(paper.get("author_pub_id", ""), quote=True)
         citations = paper["citations"]
-        metadata = f"{venue} · " if venue else ""
+        published_html = (
+            f'<time itemprop="datePublished" datetime="{year}">{year}</time>'
+            if year != "—" else ""
+        )
+        metadata = " · ".join(value for value in (published_html, venue) if value) or "—"
         indicators = paper.get("journal_indicators") or {}
         citescore = indicators.get("citescore") or {}
         indicator_html = ""
@@ -346,18 +355,46 @@ def render_publications_html(publications: list[dict], language: str) -> str:
                 f'aria-label="{html.escape(marker_title, quote=True)}" '
                 f'title="{html.escape(marker_title, quote=True)}">{marker}</span>'
             )
-        if indicator_html:
-            indicator_html = f'<span class="journal-flags">{indicator_html}</span>'
-        scholar_label = "Google Scholar"
+        indicator_html = (
+            f'<span class="journal-flags">{indicator_html}</span>'
+            if indicator_html else
+            f'<span class="journal-empty" aria-label="{"No aplicable" if language == "es" else "Not applicable"}">—</span>'
+        )
+        citation_label = "citas en Google Scholar" if language == "es" else "Google Scholar citations"
         rows.append(
-            f'        <li class="publication" data-year="{data_year}" data-citations="{citations}" '
+            f'          <tr class="publication" data-year="{data_year}" data-citations="{citations}" '
             f'data-scholar-id="{publication_id}" itemscope itemtype="https://schema.org/ScholarlyArticle">'
-            f'<span class="pub-year" itemprop="datePublished">{year}</span><div>'
-            f'<a class="pub-title" itemprop="url" href="{detail_url}"><span itemprop="headline">{title}</span></a>'
-            f'<p class="pub-doi">{metadata}{indicator_html}<a href="{url}">{scholar_label}</a>'
-            f'<span class="citation-live" data-scholar-citations>{citations}</span></p></div></li>'
+            f'<td class="pub-main"><a class="pub-title" itemprop="url" href="{detail_url}">'
+            f'<span itemprop="headline">{title}</span></a>'
+            f'<p class="pub-doi">{metadata}</p></td>'
+            f'<td class="pub-quality">{indicator_html}</td>'
+            f'<td class="pub-citations"><a href="{url}" aria-label="{citation_label}">'
+            f'<span class="citation-live" data-scholar-citations>{citations}</span></a></td></tr>'
         )
     return "\n".join(rows)
+
+
+def render_citations_chart(cites_per_year: dict, language: str) -> str:
+    values = []
+    for raw_year, raw_citations in cites_per_year.items():
+        try:
+            values.append((int(raw_year), as_int(raw_citations)))
+        except (TypeError, ValueError):
+            continue
+    values = sorted(values)[-8:]
+    maximum = max((citations for _, citations in values), default=1) or 1
+    label = "citas" if language == "es" else "citations"
+    bars = []
+    for year, citations in values:
+        height = max(3, round(citations / maximum * 100, 1)) if citations else 0
+        accessible = f"{year}: {citations} {label}"
+        bars.append(
+            f'          <div class="citation-bar" role="img" aria-label="{accessible}">'
+            f'<span class="bar-value">{citations}</span>'
+            f'<span class="bar-track"><span class="bar-fill" style="height:{height}%"></span></span>'
+            f'<span class="bar-year">{year}</span></div>'
+        )
+    return "\n".join(bars)
 
 
 def render_publications_llms(publications: list[dict]) -> str:
@@ -441,6 +478,18 @@ def replace_publication_block(text: str, rendered: str) -> str:
     updated, count = PUBLICATIONS_BLOCK.subn(replacement, text, count=1)
     if count != 1:
         raise RuntimeError("Scholar publication markers are missing or duplicated")
+    return updated
+
+
+def replace_citations_chart(text: str, rendered: str) -> str:
+    replacement = (
+        "\n        <!-- scholar-chart:start -->\n"
+        f"{rendered}\n"
+        "        <!-- scholar-chart:end -->"
+    )
+    updated, count = CITATIONS_CHART_BLOCK.subn(replacement, text, count=1)
+    if count != 1:
+        raise RuntimeError("Scholar chart markers are missing or duplicated")
     return updated
 
 
@@ -748,7 +797,9 @@ def update_public_pages(snapshot: dict) -> None:
             text,
         )
         publications_html = render_publications_html(snapshot["publications"], language)
-        path.write_text(replace_publication_block(text, publications_html), encoding="utf-8")
+        text = replace_publication_block(text, publications_html)
+        text = replace_citations_chart(text, render_citations_chart(snapshot.get("cites_per_year", {}), language))
+        path.write_text(text, encoding="utf-8")
 
     for relative in ("supervision/index.html", "projects/index.html", "es/supervision/index.html", "es/projects/index.html"):
         path = ROOT / relative
