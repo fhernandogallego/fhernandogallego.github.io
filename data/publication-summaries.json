@@ -1,0 +1,37 @@
+{
+  "a novel hybrid evolutionary transformer-long short-term memory model": {
+    "doi": "10.32604/cmc.2026.081311",
+    "en": "A unified anomaly-detection framework couples Transformer global context with LSTM temporal modelling and evolutionary hyperparameter optimisation. Evaluation across four heterogeneous CIC datasets tests generalisation in conventional, IoT and vehicular network traffic.",
+    "es": "Marco unificado de detección de anomalías que combina el contexto global de Transformer, el modelado temporal LSTM y optimización evolutiva. Se evalúa su generalización en cuatro conjuntos CIC de tráfico convencional, IoT y vehicular."
+  },
+  "use of machine learning models as surrogate models": {
+    "doi": "10.1016/j.chemphys.2026.113209",
+    "en": "Supervised machine-learning models act as efficient surrogates for costly molecular simulations, predicting usable hydrogen-storage capacity and identifying interpretable regions of the MOF design space at room temperature and moderate pressure.",
+    "es": "Modelos supervisados actúan como sustitutos eficientes de costosas simulaciones moleculares para predecir el almacenamiento de hidrógeno e identificar regiones interpretables del espacio de diseño de MOF."
+  },
+  "graph-based temporal anomaly detection": {
+    "doi": "10.1016/j.eij.2026.100892",
+    "en": "This work models acoustic feedback as a temporal anomaly-detection problem, combining graph representations, self-supervised contrastive learning and a dynamic threshold to suppress unintended resonance.",
+    "es": "El feedback acústico se formula como detección temporal de anomalías combinando grafos, aprendizaje contrastivo autosupervisado y un umbral dinámico para suprimir resonancias no deseadas."
+  },
+  "enhancing unmanned marine vehicle path planning": {
+    "doi": "10.1016/j.knosys.2025.113481",
+    "en": "A fractal-enhanced chaotic Grey Wolf Optimizer is combined with differential evolution to find shorter, smoother and collision-free routes for unmanned marine vehicles in complex, dynamic environments.",
+    "es": "Un optimizador Grey Wolf caótico con mejora fractal se combina con evolución diferencial para encontrar rutas más cortas, suaves y sin colisiones para vehículos marinos autónomos."
+  },
+  "a hybrid bio-inspired approach for clustering and routing": {
+    "doi": "10.1016/j.suscom.2025.101108",
+    "en": "The method combines Marine Predator Algorithm clustering with Hunger Games Search routing in underwater sensor networks, targeting lower energy use and latency together with longer lifetime and more reliable packet delivery.",
+    "es": "El método combina Marine Predator Algorithm para clustering con Hunger Games Search para encaminamiento en redes submarinas, reduciendo energía y latencia y mejorando su vida útil."
+  },
+  "notion meta-learner": {
+    "doi": "10.1016/j.entcom.2025.100961",
+    "en": "The Notion Meta-Learner maps human-understandable musical notions into partially organised metric spaces, improving generalisation and interpretability for one-shot and five-shot music-genre recognition.",
+    "es": "Notion Meta-Learner proyecta conceptos musicales comprensibles en espacios métricos parcialmente organizados, mejorando generalización e interpretabilidad con uno o cinco ejemplos."
+  },
+  "feature extraction of galvanic skin responses": {
+    "doi": "10.1109/JBHI.2017.2780252",
+    "en": "A nonnegative sparse-deconvolution method extracts interpretable features from galvanic skin response signals, separating electrodermal components for ambulatory monitoring, stress assessment and health applications.",
+    "es": "Una deconvolución dispersa no negativa extrae características interpretables de la respuesta galvánica, separando componentes electrodérmicos para monitorización, salud y evaluación del estrés."
+  }
+}

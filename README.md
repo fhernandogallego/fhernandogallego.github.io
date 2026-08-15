@@ -20,7 +20,7 @@ It performs the following tasks:
 
 1. Reads the public Scholar profile `89e5aoQAAAAJ`.
 2. Downloads every publication and all available citation, h-index and i10-index metrics, including five-year values.
-3. Rebuilds the publication lists in both languages, updates `data/scholar.json`, appends a historical snapshot and refreshes `llms.txt`.
+3. Rebuilds the publication lists and the individual bilingual publication pages, updates `data/scholar.json`, appends a historical snapshot and refreshes `llms.txt` and `sitemap.xml`.
 4. Commits and pushes changed public metrics to `main`.
 
 When the Scholar workflow finishes, `.github/workflows/deploy-pages.yml` publishes the resulting repository state. It also deploys after ordinary pushes to `main`.
@@ -40,5 +40,7 @@ python scripts/update_scholar.py
 
 - `sitemap.xml` and `robots.txt` support web crawling.
 - `llms.txt` provides a compact, machine-readable academic identity and selected bibliography.
-- A compact publication list, DOI links and Schema.org markup improve semantic discovery without making the page text-heavy.
+- Every Scholar publication has a stable bilingual URL with Google Scholar citation meta tags and Schema.org `ScholarlyArticle` markup.
+- `data/publication-summaries.json` stores original, curated summaries and verified DOI values separately from third-party publisher abstracts.
+- The homepage stays compact while publication pages provide richer machine-readable context.
 - The University of Valladolid portal, ORCID and Google Scholar remain the authoritative external profiles.
