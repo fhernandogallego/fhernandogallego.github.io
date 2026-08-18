@@ -18,12 +18,12 @@ BibTeX bibliography: https://www.fransdata.com/publications.bib
 Google Scholar: https://scholar.google.com/citations?user=89e5aoQAAAAJ
 Google Scholar h-index: 8
 Google Scholar h-index (5 years): 8
-Google Scholar citations: 271
+Google Scholar citations: 272
 Google Scholar citations (5 years): 230
 Google Scholar i10-index: 7
 Google Scholar i10-index (5 years): 7
 Google Scholar citations (current year): 99
-Scholar metrics updated: 2026-08-17
+Scholar metrics updated: 2026-08-18
 CNEAI research periods: 1, awarded in 2026 for 2016–2025
 Peer-reviewed journal articles recorded in CVN: 23 (14 August 2026)
 Teaching experience: more than nine years
@@ -84,7 +84,7 @@ Founder: Fransdata Tech Ventures
 - Ana Hernando Gallego and Raúl Muñoz Bautista and F. Hernando-Galego and Javier Velázquez Saornil and Mathieu Legrand. "Gamificación en Parques y Jardines: ornamental plants-kahoot y ruletas-para el reconocimiento de las especies ornamentales más típicas" (2024). 28th International Congress on Project Management and Engineering, 2024 Google Scholar citations: 0. DOI: https://doi.org/10.61547/2409027. URL: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AIjCSPb-OGe4C
 - F. Hernando-Galego. "Stress level assessment with non-intrusive sensors" (2018). Universidad Carlos III de Madrid, 2018 Google Scholar citations: 2. URL: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3Au5HHmVD_uO8C
 - F. Hernando-Galego. "Stress level assessment with non-intrusive sensors" (2018). Google Scholar citations: 0. URL: https://e-archivo.uc3m.es/entities/publication/0e2f1356-93d3-4157-a919-7fa80c9445ee
-- F. Hernando-Galego and David Luengo and Antonio Artes-Rodriguez. "Feature extraction of galvanic skin responses by nonnegative sparse deconvolution" (2017). IEEE journal of biomedical and health informatics 22 (5), 1385-1394, 2017 Google Scholar citations: 106. DOI: https://doi.org/10.1109/JBHI.2017.2780252. Scopus CiteScore 2025: 14.3; best quartile: Q1; category ranks: Electrical and Electronic Engineering: 48/1030 (Q1); Health Informatics: 9/168 (Q1); Computer Science Applications: 69/1022 (Q1); Health Information Management: 8/64 (Q1). Journal status in the supplied 2017-2019 non-standard-behaviour report: not identified. URL: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A9yKSN-GCB0IC
+- F. Hernando-Galego and David Luengo and Antonio Artes-Rodriguez. "Feature extraction of galvanic skin responses by nonnegative sparse deconvolution" (2017). IEEE journal of biomedical and health informatics 22 (5), 1385-1394, 2017 Google Scholar citations: 107. DOI: https://doi.org/10.1109/JBHI.2017.2780252. Scopus CiteScore 2025: 14.3; best quartile: Q1; category ranks: Electrical and Electronic Engineering: 48/1030 (Q1); Health Informatics: 9/168 (Q1); Computer Science Applications: 69/1022 (Q1); Health Information Management: 8/64 (Q1). Journal status in the supplied 2017-2019 non-standard-behaviour report: not identified. URL: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A9yKSN-GCB0IC
 - Victor P. Gil Jiménez and Ana Garcia Armada and F. Hernando-Galego and Nieves Sidney González Pizarro. "Novel orthogonal multi-sequences for an efficient jamming on the UMTS signal" (2016). EURASIP Journal on Wireless Communications and Networking 2016, 1-8, 2016 Google Scholar citations: 2. DOI: https://doi.org/10.1186/s13638-016-0770-6. Journal status in the supplied 2017-2019 non-standard-behaviour report: not identified. URL: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3Au-x6o8ySG0sC
 - F. Hernando-Galego and Antonio Artés-Rodríguez. "Individual performance calibration using physiological stress signals" (2015). arXiv preprint arXiv:1507.03482, 2015 Google Scholar citations: 22. DOI: https://doi.org/10.48550/arXiv.1507.03482. URL: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AqjMakFHDy7sC
 - Ana García Armada and Víctor P. Gil Jiménez and Nieves Sidney González Pizarro and F. Hernando-Galego. "Método y dispositivo para la inhibición de señales de telefonía móvil" (2012). ES Patent ES2455067B1, 2012 Google Scholar citations: 0. URL: https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AUeHWp8X0CEIC
