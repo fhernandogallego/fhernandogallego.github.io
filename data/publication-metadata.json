@@ -130,8 +130,7 @@
   },
   "2026-retroalimentacion-formativa-con-ia-generativa-en-programacion-diseno-del-2b29a892": {
     "status": "unresolved",
-    "best_match_score": 0.4882,
-    "openalex_checked": true
+    "best_match_score": 0.4882
   },
   "2026-hdawn-hrdae-a-hybrid-framework-for-the-music-genre-classification-with-t-ed3142c3": {
     "status": "matched",
@@ -663,13 +662,11 @@
   },
   "2024-analisis-de-una-experiencia-de-utilizacion-de-asistentes-de-ia-en-progra-124e50a6": {
     "status": "unresolved",
-    "best_match_score": 0.5467,
-    "openalex_checked": true
+    "best_match_score": 0.5467
   },
   "2024-identificacion-de-buenas-practicas-en-el-uso-de-asistentes-inteligentes-215bbe9f": {
     "status": "unresolved",
-    "best_match_score": 0.565,
-    "openalex_checked": true
+    "best_match_score": 0.565
   },
   "2024-gamificacion-en-parques-y-jardines-ornamental-plants-kahoot-y-ruletas-pa-daa3ad01": {
     "status": "matched",
