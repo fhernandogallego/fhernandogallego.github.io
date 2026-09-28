@@ -612,7 +612,7 @@
   },
   "2025-uso-de-asistentes-de-ia-en-programacion-orientada-a-objetos-impacto-de-u-83f60007": {
     "status": "unresolved",
-    "best_match_score": 0.4977,
+    "best_match_score": 0.4089,
     "openalex_checked": true
   },
   "2025-unified-anomaly-detection-in-iot-and-cyber-physical-networks-using-evo-t-4612abe7": {
@@ -663,8 +663,7 @@
   },
   "2024-analisis-de-una-experiencia-de-utilizacion-de-asistentes-de-ia-en-progra-124e50a6": {
     "status": "unresolved",
-    "best_match_score": 0.5467,
-    "openalex_checked": true
+    "best_match_score": 0.5467
   },
   "2024-identificacion-de-buenas-practicas-en-el-uso-de-asistentes-inteligentes-215bbe9f": {
     "status": "unresolved",
