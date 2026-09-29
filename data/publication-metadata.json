@@ -612,8 +612,7 @@
   },
   "2025-uso-de-asistentes-de-ia-en-programacion-orientada-a-objetos-impacto-de-u-83f60007": {
     "status": "unresolved",
-    "best_match_score": 0.4089,
-    "openalex_checked": true
+    "best_match_score": 0.4089
   },
   "2025-unified-anomaly-detection-in-iot-and-cyber-physical-networks-using-evo-t-4612abe7": {
     "status": "skipped",
@@ -667,8 +666,7 @@
   },
   "2024-identificacion-de-buenas-practicas-en-el-uso-de-asistentes-inteligentes-215bbe9f": {
     "status": "unresolved",
-    "best_match_score": 0.565,
-    "openalex_checked": true
+    "best_match_score": 0.565
   },
   "2024-gamificacion-en-parques-y-jardines-ornamental-plants-kahoot-y-ruletas-pa-daa3ad01": {
     "status": "matched",
@@ -691,8 +689,7 @@
   },
   "2018-stress-level-assessment-with-non-intrusive-sensors-4a144755": {
     "status": "unresolved",
-    "best_match_score": 0.5047,
-    "openalex_checked": true
+    "best_match_score": 0.5047
   },
   "2018-stress-level-assessment-with-non-intrusive-sensors-f8c53d6d": {
     "status": "skipped",
