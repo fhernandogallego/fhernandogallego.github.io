@@ -36,7 +36,7 @@ Google Scholar may occasionally block automated requests from shared GitHub Acti
 Install the pinned dependencies used by the workflow and execute:
 
 ```bash
-python -m pip install scholarly==1.7.11
+python -m pip install beautifulsoup4 requests
 python scripts/update_scholar.py
 python scripts/enrich_publications.py
 python scripts/update_scholar.py --render-only

@@ -11,7 +11,7 @@ import sys
 import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import parse_qs, quote, urlparse
 
 from journal_data import attach_journal_indicators
 
@@ -221,13 +221,35 @@ def apply_curated_metadata(publications: list[dict], summaries: dict) -> None:
 
 
 def fetch_snapshot(previous: dict | None = None) -> dict:
-    """Download the complete profile and normalize it for the static website."""
-    from scholarly import scholarly
+    """Download the public profile directly and normalize it for the website."""
+    import requests
+    from bs4 import BeautifulSoup
 
-    author = scholarly.fill(
-        scholarly.search_author_id(AUTHOR_ID),
-        sections=["basics", "indices", "counts", "publications"],
+    profile_url = f"https://scholar.google.com/citations?user={quote(AUTHOR_ID)}&hl=en&pagesize=100"
+    response = requests.get(
+        profile_url,
+        headers={
+            "Accept-Language": "en-US,en;q=0.9",
+            "User-Agent": (
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+            ),
+        },
+        timeout=30,
     )
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    metric_rows = soup.select("#gsc_rsb_st tbody tr")
+    publication_rows = soup.select("tr.gsc_a_tr")
+    if len(metric_rows) < 3 or not publication_rows:
+        raise RuntimeError("Google Scholar returned a blocked or incomplete profile page")
+
+    metric_values = []
+    for row in metric_rows[:3]:
+        values = [as_int(cell.get_text(strip=True)) for cell in row.select("td.gsc_rsb_std")]
+        metric_values.append((values + [0, 0])[:2])
+
     previous_publications = (previous or {}).get("publications", [])
     previous_by_id = {
         paper.get("author_pub_id"): paper
@@ -235,38 +257,44 @@ def fetch_snapshot(previous: dict | None = None) -> dict:
         if paper.get("author_pub_id")
     }
     publications = []
-    for item in author.get("publications", []):
-        bib = item.get("bib", {}) or {}
-        publication_id = str(item.get("author_pub_id") or "")
+    for row in publication_rows:
+        title_link = row.select_one("a.gsc_a_at")
+        if title_link is None:
+            continue
+        href = str(title_link.get("href") or "")
+        publication_id = str(parse_qs(urlparse(href).query).get("citation_for_view", [""])[0])
         prior = previous_by_id.get(publication_id, {})
-        title = str(bib.get("title") or "")
-        venue = str(bib.get("citation") or bib.get("venue") or "")
-        # Existing records already contain the slow detail-page fields. Scholar
-        # is queried in depth only for a genuinely new profile publication.
-        if not prior and (not bib.get("author") or not bib.get("pub_year") or not venue or title.endswith(("…", "..."))):
-            try:
-                item = scholarly.fill(item)
-                bib = item.get("bib", {}) or bib
-            except Exception:  # Scholar can throttle individual detail pages.
-                pass
-        current_title = str(bib.get("title") or "")
+        current_title = title_link.get_text(" ", strip=True)
         if current_title.endswith(("…", "...")) and prior.get("title"):
             current_title = prior["title"]
-        direct_url = item.get("pub_url") or item.get("eprint_url")
+        gray_fields = row.select(".gsc_a_t .gs_gray")
+        page_authors = gray_fields[0].get_text(" ", strip=True) if gray_fields else ""
+        page_venue = gray_fields[1].get_text(" ", strip=True) if len(gray_fields) > 1 else ""
+        year_node = row.select_one(".gsc_a_y span")
+        citations_node = row.select_one(".gsc_a_c a")
+        year = year_node.get_text(strip=True) if year_node else ""
+        citations = as_int(citations_node.get_text(strip=True) if citations_node else 0)
+
+        # Keep previously enriched authors, venues and external URLs. The compact
+        # profile table is authoritative for titles, years and citation counts.
+        authors = prior.get("authors") or page_authors.replace(", ", " and ")
+        venue = prior.get("venue") or page_venue
         publications.append(
             {
-                "title": current_title or prior.get("title") or title or "Untitled",
-                "authors": author_text(bib.get("author")) or prior.get("authors", ""),
-                "year": str(bib.get("pub_year") or prior.get("year") or ""),
-                "venue": str(bib.get("citation") or bib.get("venue") or prior.get("venue") or venue),
-                "citations": as_int(item.get("num_citations")),
+                "title": current_title or prior.get("title") or "Untitled",
+                "authors": authors,
+                "year": str(year or prior.get("year") or ""),
+                "venue": str(venue),
+                "citations": citations,
                 "author_pub_id": publication_id,
-                "url": str(direct_url or prior.get("url") or publication_url(item)),
+                "url": str(prior.get("url") or publication_url({"author_pub_id": publication_id})),
             }
         )
 
     now = datetime.now(timezone.utc)
-    cites_per_year = author.get("cites_per_year", {}) or {}
+    years = [node.get_text(strip=True) for node in soup.select(".gsc_g_t")]
+    counts = [as_int(node.get_text(strip=True)) for node in soup.select(".gsc_g_al")]
+    cites_per_year = dict(zip(years, counts))
     current_year_citations = cites_per_year.get(now.year, cites_per_year.get(str(now.year), 0))
     publications.sort(
         key=lambda paper: (as_int(paper["year"]), paper["citations"], paper["title"]),
@@ -277,13 +305,13 @@ def fetch_snapshot(previous: dict | None = None) -> dict:
         "updated_at": now.isoformat(timespec="seconds"),
         "source": "Google Scholar",
         "profile": f"https://scholar.google.com/citations?user={AUTHOR_ID}",
-        "name": author.get("name", "Francisco Hernando Gallego"),
-        "total_citations": as_int(author.get("citedby")),
-        "citations_5y": as_int(author.get("citedby5y")),
-        "hindex": as_int(author.get("hindex")),
-        "hindex5y": as_int(author.get("hindex5y")),
-        "i10index": as_int(author.get("i10index")),
-        "i10index5y": as_int(author.get("i10index5y")),
+        "name": (soup.select_one("#gsc_prf_in").get_text(" ", strip=True) if soup.select_one("#gsc_prf_in") else "Francisco Hernando Gallego"),
+        "total_citations": metric_values[0][0],
+        "citations_5y": metric_values[0][1],
+        "hindex": metric_values[1][0],
+        "hindex5y": metric_values[1][1],
+        "i10index": metric_values[2][0],
+        "i10index5y": metric_values[2][1],
         "citations_current_year": as_int(current_year_citations),
         "cites_per_year": cites_per_year,
         "publications": publications,
