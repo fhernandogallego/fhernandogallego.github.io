@@ -131,7 +131,18 @@
   "2026-retroalimentacion-formativa-con-ia-generativa-en-programacion-diseno-del-2b29a892": {
     "status": "unresolved",
     "best_match_score": 0.4882,
-    "openalex_checked": true
+    "openalex_checked": true,
+    "openalex_id": "https://openalex.org/W7220027281",
+    "open_access_url": "https://hdl.handle.net/10045/170882",
+    "authors": [
+      "J.V. Alvarez-Bravo",
+      "María Antonia López Luengo",
+      "María Victoria Vega Agapito",
+      "Berta San Isidro San Cristobal",
+      "David de Andrés Martínez",
+      "F. Hernando-Galego"
+    ],
+    "abstract_available": true
   },
   "2026-hdawn-hrdae-a-hybrid-framework-for-the-music-genre-classification-with-t-ed3142c3": {
     "status": "matched",
@@ -612,7 +623,7 @@
   },
   "2025-uso-de-asistentes-de-ia-en-programacion-orientada-a-objetos-impacto-de-u-83f60007": {
     "status": "unresolved",
-    "best_match_score": 0.4089,
+    "best_match_score": 0.4977,
     "openalex_checked": true
   },
   "2025-unified-anomaly-detection-in-iot-and-cyber-physical-networks-using-evo-t-4612abe7": {
