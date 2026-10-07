@@ -29,7 +29,7 @@ jobs:
         timeout-minutes: 3
         env:
           SCHOLAR_AUTHOR_ID: 89e5aoQAAAAJ
-        run: python scripts/update_scholar.py
+        run: python scripts/update_scholar.py --allow-stale
       - name: Enrich new publications from scholarly indexes
         run: |
           python scripts/enrich_publications.py

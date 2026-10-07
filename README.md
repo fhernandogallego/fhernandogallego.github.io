@@ -29,7 +29,7 @@ It performs the following tasks:
 
 When the Scholar workflow finishes, `.github/workflows/deploy-pages.yml` publishes the resulting repository state. It also deploys after ordinary pushes to `main`.
 
-Google Scholar may occasionally block automated requests from shared GitHub Actions IP addresses. A failed run does not overwrite the last valid data. If blocks become frequent, use a stable proxy or a supported scholarly-data API rather than increasing the request frequency.
+Google Scholar may occasionally block automated requests from shared GitHub Actions IP addresses. The scheduled workflow uses `--allow-stale`: HTTP 403 or 429 produces a workflow warning and keeps the last valid snapshot, its update date and its history unchanged. Publication enrichment and rendering can still continue from the stored data. Without a valid stored snapshot, or for other errors, the run still fails. Manual refreshes remain strict unless `--allow-stale` is supplied. If blocks persist, the existing server bot can publish its snapshot using the import command below.
 
 ## Run the updater locally
 

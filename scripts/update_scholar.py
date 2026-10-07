@@ -45,6 +45,10 @@ METRIC_KEYS = (
 )
 
 
+class ScholarAccessBlocked(RuntimeError):
+    """Scholar refused the automated request or rate-limited it."""
+
+
 def as_int(value: object) -> int:
     """Return Scholar's numeric fields as integers without accepting junk."""
     try:
@@ -237,6 +241,8 @@ def fetch_snapshot(previous: dict | None = None) -> dict:
         },
         timeout=30,
     )
+    if response.status_code in (403, 429):
+        raise ScholarAccessBlocked(f"Google Scholar returned HTTP {response.status_code}")
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
 
@@ -956,7 +962,17 @@ def main() -> None:
             raise RuntimeError("--snapshot-file requires a path") from error
         snapshot = import_snapshot(snapshot_path, previous)
     else:
-        snapshot = fetch_snapshot(previous)
+        try:
+            snapshot = fetch_snapshot(previous)
+        except ScholarAccessBlocked as error:
+            if "--allow-stale" not in sys.argv or not previous:
+                raise
+            validate_snapshot(previous, None)
+            print(
+                f"::warning::{error}; keeping the stored Scholar data from "
+                f"{previous['updated_at']}. No new snapshot was saved."
+            )
+            return
     apply_curated_metadata(snapshot["publications"], load_summaries())
     validate_snapshot(snapshot, previous)
     save_snapshot(snapshot)
