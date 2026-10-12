@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-05T14:34:41+00:00",
+  "updated_at": "2026-10-12T15:21:20+00:00",
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=89e5aoQAAAAJ",
   "name": "Francisco Hernando-Gallego",
-  "total_citations": 297,
-  "citations_5y": 255,
+  "total_citations": 299,
+  "citations_5y": 257,
   "hindex": 8,
   "hindex5y": 8,
   "i10index": 7,
   "i10index5y": 7,
-  "citations_current_year": 121,
+  "citations_current_year": 123,
   "cites_per_year": {
     "2016": 1,
     "2017": 3,
@@ -21,7 +21,7 @@
     "2023": 17,
     "2024": 17,
     "2025": 64,
-    "2026": 121
+    "2026": 123
   },
   "publications": [
     {
@@ -144,7 +144,7 @@
     },
     {
       "title": "Retroalimentación formativa con IA generativa en programación: diseño del protocolo y evaluación de resultados",
-      "authors": "JVÁ Bravo and MAL Luengo and MVV Agapito and BSI San Cristobal and ...",
+      "authors": "J.V. Alvarez-Bravo and María Antonia López Luengo and María Victoria Vega Agapito and Berta San Isidro San Cristobal and David de Andrés Martínez and F. Hernando-Galego",
       "year": "2026",
       "venue": "Actas de las Jenui 11, 297-305, 2026",
       "citations": 0,
@@ -153,7 +153,9 @@
       "slug": "2026-retroalimentacion-formativa-con-ia-generativa-en-programacion-diseno-del-2b29a892",
       "journal": "Actas de las Jenui",
       "publisher": "Asociación de Enseñantes Universitarios de la Informática (AENUI)",
-      "type": "proceedings-article"
+      "type": "proceedings-article",
+      "openalex_id": "https://openalex.org/W7220027281",
+      "open_access_url": "https://hdl.handle.net/10045/170882"
     },
     {
       "title": "HDAWN-HRDAE: A hybrid framework for the music genre classification with the dual temporal and frequency feature modeling",
@@ -312,7 +314,7 @@
       "authors": "Farshad Rostami Ghadi and Masoud Kaveh and F. Hernando-Galego and Diego Martín and Kai-Kit Wong and Chan-Byoung Chae",
       "year": "2025",
       "venue": "IEEE Wireless Communications Letters 14 (9), 2907-2911, 2025",
-      "citations": 18,
+      "citations": 19,
       "author_pub_id": "89e5aoQAAAAJ:Y0pCki6q_DkC",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AY0pCki6q_DkC",
       "slug": "2025-uav-relay-assisted-rsma-fluid-antenna-system-outage-probability-analysis-5b1a92f4",
@@ -331,7 +333,7 @@
       "authors": "Chaoyang Zhu and Yassine Bouteraa and Mohammad Khishe and Diego Martín and F. Hernando-Galego and Thavavel Vaiyapuri",
       "year": "2025",
       "venue": "Knowledge-Based Systems 317, 113481, 2025",
-      "citations": 18,
+      "citations": 19,
       "author_pub_id": "89e5aoQAAAAJ:YsMSGLbcyi4C",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AYsMSGLbcyi4C",
       "slug": "2025-enhancing-unmanned-marine-vehicle-path-planning-a-fractal-enhanced-chaot-8f409bb5",
@@ -385,7 +387,7 @@
       "authors": "Anita Ershadi Oskouei and Mehrdad Kaveh and F. Hernando-Galego and Diego Martín",
       "year": "2025",
       "venue": "Symmetry 17 (11), 1800, 2025",
-      "citations": 4,
+      "citations": 5,
       "author_pub_id": "89e5aoQAAAAJ:KlAtU1dfN6UC",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AKlAtU1dfN6UC",
       "slug": "2025-hybrid-time-series-transformerdeep-belief-network-for-robust-anomaly-det-e8e7dce9",
@@ -579,7 +581,6 @@
       "slug": "2018-stress-level-assessment-with-non-intrusive-sensors-4a144755",
       "publisher": "Universidad Carlos III de Madrid",
       "type": "dissertation",
-      "openalex_id": "https://openalex.org/W2902153983",
       "open_access_url": "https://e-archivo.uc3m.es/entities/publication/0e2f1356-93d3-4157-a919-7fa80c9445ee"
     },
     {
@@ -600,7 +601,7 @@
       "authors": "F. Hernando-Galego and David Luengo and Antonio Artes-Rodriguez",
       "year": "2017",
       "venue": "IEEE journal of biomedical and health informatics 22 (5), 1385-1394, 2017",
-      "citations": 112,
+      "citations": 111,
       "author_pub_id": "89e5aoQAAAAJ:9yKSN-GCB0IC",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A9yKSN-GCB0IC",
       "slug": "2017-feature-extraction-of-galvanic-skin-responses-by-nonnegative-sparse-deco-e0cadfcf",
