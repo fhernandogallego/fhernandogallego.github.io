@@ -16,7 +16,9 @@ python3 scripts/enrich_publications.py
 python3 scripts/update_scholar.py --render-only
 
 git add data/scholar.json data/scholar-history.jsonl data/publication-metadata.json \
-  index.html es/index.html llms.txt sitemap.xml publications.bib publications es/publications
+  index.html es/index.html supervision/index.html projects/index.html \
+  es/supervision/index.html es/projects/index.html \
+  llms.txt sitemap.xml publications.bib publications es/publications
 
 if git diff --cached --quiet; then
   echo "No public Scholar data changed."
