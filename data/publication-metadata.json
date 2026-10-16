@@ -791,5 +791,34 @@
     "status": "unresolved",
     "best_match_score": 0.9014,
     "openalex_checked": true
+  },
+  "2026-metaheuristic-optimization-of-temporal-surrogates-for-early-prediction-o-8c4812ee": {
+    "status": "matched",
+    "source": "Crossref",
+    "match_score": 1.0,
+    "doi": "10.3390/math14203679",
+    "authors": [
+      "F. Hernando-Galego",
+      "Diego García-Santos",
+      "Dimitar Vasilev-Vasilev",
+      "Diego Martín",
+      "José Vicente Álvarez-Bravo"
+    ],
+    "journal": "Mathematics",
+    "issns": [
+      "2227-7390"
+    ],
+    "publisher": "MDPI AG",
+    "published": "2026-10-10",
+    "volume": "14",
+    "issue": "20",
+    "pages": "3679",
+    "type": "journal-article",
+    "url": "https://doi.org/10.3390/math14203679",
+    "abstract_available": true,
+    "updated_at": "2026-10-16T11:24:46+00:00",
+    "openalex_checked": true,
+    "openalex_id": "https://openalex.org/W7221567829",
+    "open_access_url": "https://doi.org/10.3390/math14203679"
   }
 }

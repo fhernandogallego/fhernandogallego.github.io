@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-12T15:21:20+00:00",
+  "updated_at": "2026-10-16T11:24:44+00:00",
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=89e5aoQAAAAJ",
   "name": "Francisco Hernando-Gallego",
-  "total_citations": 299,
-  "citations_5y": 257,
+  "total_citations": 300,
+  "citations_5y": 258,
   "hindex": 8,
   "hindex5y": 8,
   "i10index": 7,
   "i10index5y": 7,
-  "citations_current_year": 123,
+  "citations_current_year": 124,
   "cites_per_year": {
     "2016": 1,
     "2017": 3,
@@ -21,7 +21,7 @@
     "2023": 17,
     "2024": 17,
     "2025": 64,
-    "2026": 123
+    "2026": 124
   },
   "publications": [
     {
@@ -158,6 +158,16 @@
       "open_access_url": "https://hdl.handle.net/10045/170882"
     },
     {
+      "title": "Metaheuristic Optimization of Temporal Surrogates for Early Prediction of Protein Conformational Stability from Short Molecular-Dynamics Trajectories",
+      "authors": "F Hernando-Gallego and D García-Santos and D Vasilev-Vasilev and D Martín and ...",
+      "year": "2026",
+      "venue": "Mathematics , 2026",
+      "citations": 0,
+      "author_pub_id": "89e5aoQAAAAJ:mB3voiENLucC",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AmB3voiENLucC",
+      "slug": "2026-metaheuristic-optimization-of-temporal-surrogates-for-early-prediction-o-8c4812ee"
+    },
+    {
       "title": "HDAWN-HRDAE: A hybrid framework for the music genre classification with the dual temporal and frequency feature modeling",
       "authors": "Xiaoxu Jie and Mohammad Khishe and F. Hernando-Galego and Diego Martín and Rifaqat Ali and Qusai Y. Shambour and Taher M. Ghazal",
       "year": "2026",
@@ -274,7 +284,7 @@
       "authors": "Pardis Sadatian Moghaddam and Ali Vaziri and Sarvenaz Sadat Khatami and F. Hernando-Galego and Diego Martín",
       "year": "2025",
       "venue": "Future Internet 17 (6), 258, 2025",
-      "citations": 38,
+      "citations": 39,
       "author_pub_id": "89e5aoQAAAAJ:_FxGoFyzp5QC",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A_FxGoFyzp5QC",
       "slug": "2025-generative-adversarial-and-transformer-network-synergy-for-robust-intrus-f800f451",
@@ -581,6 +591,7 @@
       "slug": "2018-stress-level-assessment-with-non-intrusive-sensors-4a144755",
       "publisher": "Universidad Carlos III de Madrid",
       "type": "dissertation",
+      "openalex_id": "https://openalex.org/W2902153983",
       "open_access_url": "https://e-archivo.uc3m.es/entities/publication/0e2f1356-93d3-4157-a919-7fa80c9445ee"
     },
     {
