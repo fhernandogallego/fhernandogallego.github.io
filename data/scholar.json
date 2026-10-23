@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-16T11:24:44+00:00",
+  "updated_at": "2026-10-23T11:36:13+00:00",
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=89e5aoQAAAAJ",
   "name": "Francisco Hernando-Gallego",
-  "total_citations": 300,
-  "citations_5y": 258,
+  "total_citations": 305,
+  "citations_5y": 263,
   "hindex": 8,
   "hindex5y": 8,
   "i10index": 7,
   "i10index5y": 7,
-  "citations_current_year": 124,
+  "citations_current_year": 128,
   "cites_per_year": {
     "2016": 1,
     "2017": 3,
@@ -20,8 +20,8 @@
     "2022": 12,
     "2023": 17,
     "2024": 17,
-    "2025": 64,
-    "2026": 124
+    "2025": 65,
+    "2026": 128
   },
   "publications": [
     {
@@ -29,7 +29,7 @@
       "authors": "Masoud Kaveh and Farshad Rostami Ghadi and F. Hernando-Galego and Diego Martín and Kai-Kit Wong and Riku Jäntti",
       "year": "2026",
       "venue": "IEEE Wireless Communications Letters, 2026",
-      "citations": 19,
+      "citations": 20,
       "author_pub_id": "89e5aoQAAAAJ:3fE2CSJIrl8C",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A3fE2CSJIrl8C",
       "slug": "2026-physical-layer-security-over-fluid-reconfigurable-intelligent-surface-as-2569dd19",
@@ -159,13 +159,26 @@
     },
     {
       "title": "Metaheuristic Optimization of Temporal Surrogates for Early Prediction of Protein Conformational Stability from Short Molecular-Dynamics Trajectories",
-      "authors": "F Hernando-Gallego and D García-Santos and D Vasilev-Vasilev and D Martín and ...",
+      "authors": "F. Hernando-Galego and Diego García-Santos and Dimitar Vasilev-Vasilev and Diego Martín and José Vicente Álvarez-Bravo",
       "year": "2026",
       "venue": "Mathematics , 2026",
       "citations": 0,
       "author_pub_id": "89e5aoQAAAAJ:mB3voiENLucC",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AmB3voiENLucC",
-      "slug": "2026-metaheuristic-optimization-of-temporal-surrogates-for-early-prediction-o-8c4812ee"
+      "slug": "2026-metaheuristic-optimization-of-temporal-surrogates-for-early-prediction-o-8c4812ee",
+      "doi": "10.3390/math14203679",
+      "journal": "Mathematics",
+      "publisher": "MDPI AG",
+      "published": "2026-10-10",
+      "volume": "14",
+      "issue": "20",
+      "pages": "3679",
+      "type": "journal-article",
+      "issns": [
+        "2227-7390"
+      ],
+      "openalex_id": "https://openalex.org/W7221567829",
+      "open_access_url": "https://doi.org/10.3390/math14203679"
     },
     {
       "title": "HDAWN-HRDAE: A hybrid framework for the music genre classification with the dual temporal and frequency feature modeling",
@@ -324,7 +337,7 @@
       "authors": "Farshad Rostami Ghadi and Masoud Kaveh and F. Hernando-Galego and Diego Martín and Kai-Kit Wong and Chan-Byoung Chae",
       "year": "2025",
       "venue": "IEEE Wireless Communications Letters 14 (9), 2907-2911, 2025",
-      "citations": 19,
+      "citations": 20,
       "author_pub_id": "89e5aoQAAAAJ:Y0pCki6q_DkC",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AY0pCki6q_DkC",
       "slug": "2025-uav-relay-assisted-rsma-fluid-antenna-system-outage-probability-analysis-5b1a92f4",
@@ -343,7 +356,7 @@
       "authors": "Chaoyang Zhu and Yassine Bouteraa and Mohammad Khishe and Diego Martín and F. Hernando-Galego and Thavavel Vaiyapuri",
       "year": "2025",
       "venue": "Knowledge-Based Systems 317, 113481, 2025",
-      "citations": 19,
+      "citations": 20,
       "author_pub_id": "89e5aoQAAAAJ:YsMSGLbcyi4C",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AYsMSGLbcyi4C",
       "slug": "2025-enhancing-unmanned-marine-vehicle-path-planning-a-fractal-enhanced-chaot-8f409bb5",
@@ -612,7 +625,7 @@
       "authors": "F. Hernando-Galego and David Luengo and Antonio Artes-Rodriguez",
       "year": "2017",
       "venue": "IEEE journal of biomedical and health informatics 22 (5), 1385-1394, 2017",
-      "citations": 111,
+      "citations": 113,
       "author_pub_id": "89e5aoQAAAAJ:9yKSN-GCB0IC",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A9yKSN-GCB0IC",
       "slug": "2017-feature-extraction-of-galvanic-skin-responses-by-nonnegative-sparse-deco-e0cadfcf",
