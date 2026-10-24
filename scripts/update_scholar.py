@@ -45,7 +45,11 @@ METRIC_KEYS = (
 )
 
 
-class ScholarAccessBlocked(RuntimeError):
+class ScholarProfileUnavailable(RuntimeError):
+    """Scholar did not provide a usable public profile response."""
+
+
+class ScholarAccessBlocked(ScholarProfileUnavailable):
     """Scholar refused the automated request or rate-limited it."""
 
 
@@ -249,7 +253,7 @@ def fetch_snapshot(previous: dict | None = None) -> dict:
     metric_rows = soup.select("#gsc_rsb_st tbody tr")
     publication_rows = soup.select("tr.gsc_a_tr")
     if len(metric_rows) < 3 or not publication_rows:
-        raise RuntimeError("Google Scholar returned a blocked or incomplete profile page")
+        raise ScholarProfileUnavailable("Google Scholar returned a blocked or incomplete profile page")
 
     metric_values = []
     for row in metric_rows[:3]:
@@ -964,7 +968,7 @@ def main() -> None:
     else:
         try:
             snapshot = fetch_snapshot(previous)
-        except ScholarAccessBlocked as error:
+        except ScholarProfileUnavailable as error:
             if "--allow-stale" not in sys.argv or not previous:
                 raise
             validate_snapshot(previous, None)
