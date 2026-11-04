@@ -130,19 +130,7 @@
   },
   "2026-retroalimentacion-formativa-con-ia-generativa-en-programacion-diseno-del-2b29a892": {
     "status": "unresolved",
-    "best_match_score": 0.4882,
-    "openalex_checked": true,
-    "openalex_id": "https://openalex.org/W7220027281",
-    "open_access_url": "https://hdl.handle.net/10045/170882",
-    "authors": [
-      "J.V. Alvarez-Bravo",
-      "María Antonia López Luengo",
-      "María Victoria Vega Agapito",
-      "Berta San Isidro San Cristobal",
-      "David de Andrés Martínez",
-      "F. Hernando-Galego"
-    ],
-    "abstract_available": true
+    "best_match_score": 0.4882
   },
   "2026-hdawn-hrdae-a-hybrid-framework-for-the-music-genre-classification-with-t-ed3142c3": {
     "status": "matched",
@@ -623,8 +611,7 @@
   },
   "2025-uso-de-asistentes-de-ia-en-programacion-orientada-a-objetos-impacto-de-u-83f60007": {
     "status": "unresolved",
-    "best_match_score": 0.4089,
-    "openalex_checked": true
+    "best_match_score": 0.4089
   },
   "2025-unified-anomaly-detection-in-iot-and-cyber-physical-networks-using-evo-t-4612abe7": {
     "status": "skipped",
@@ -703,13 +690,7 @@
   },
   "2018-stress-level-assessment-with-non-intrusive-sensors-4a144755": {
     "status": "unresolved",
-    "best_match_score": 0.5047,
-    "openalex_checked": true,
-    "openalex_id": "https://openalex.org/W2902153983",
-    "authors": [
-      "F. Hernando-Galego"
-    ],
-    "abstract_available": true
+    "best_match_score": 0.5047
   },
   "2018-stress-level-assessment-with-non-intrusive-sensors-f8c53d6d": {
     "status": "skipped",
@@ -789,8 +770,7 @@
   },
   "undated-orthogonal-multi-sequences-for-efficiently-jamming-the-umts-signal-ad1ef654": {
     "status": "unresolved",
-    "best_match_score": 0.9014,
-    "openalex_checked": true
+    "best_match_score": 0.9014
   },
   "2026-metaheuristic-optimization-of-temporal-surrogates-for-early-prediction-o-8c4812ee": {
     "status": "matched",
