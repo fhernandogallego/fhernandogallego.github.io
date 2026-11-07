@@ -679,7 +679,8 @@
   },
   "2024-identificacion-de-buenas-practicas-en-el-uso-de-asistentes-inteligentes-215bbe9f": {
     "status": "unresolved",
-    "best_match_score": 0.565
+    "best_match_score": 0.565,
+    "openalex_checked": true
   },
   "2024-gamificacion-en-parques-y-jardines-ornamental-plants-kahoot-y-ruletas-pa-daa3ad01": {
     "status": "matched",
@@ -788,7 +789,8 @@
   },
   "undated-orthogonal-multi-sequences-for-efficiently-jamming-the-umts-signal-ad1ef654": {
     "status": "unresolved",
-    "best_match_score": 0.9014
+    "best_match_score": 0.9014,
+    "openalex_checked": true
   },
   "2026-metaheuristic-optimization-of-temporal-surrogates-for-early-prediction-o-8c4812ee": {
     "status": "matched",
