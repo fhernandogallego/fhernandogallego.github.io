@@ -623,7 +623,8 @@
   },
   "2025-uso-de-asistentes-de-ia-en-programacion-orientada-a-objetos-impacto-de-u-83f60007": {
     "status": "unresolved",
-    "best_match_score": 0.4977
+    "best_match_score": 0.4089,
+    "openalex_checked": true
   },
   "2025-unified-anomaly-detection-in-iot-and-cyber-physical-networks-using-evo-t-4612abe7": {
     "status": "skipped",
@@ -788,7 +789,8 @@
   },
   "undated-orthogonal-multi-sequences-for-efficiently-jamming-the-umts-signal-ad1ef654": {
     "status": "unresolved",
-    "best_match_score": 0.9014
+    "best_match_score": 0.9014,
+    "openalex_checked": true
   },
   "2026-metaheuristic-optimization-of-temporal-surrogates-for-early-prediction-o-8c4812ee": {
     "status": "matched",
