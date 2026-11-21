@@ -863,6 +863,8 @@ def update_sitemap(publications: list[dict]) -> None:
         ("https://www.fransdata.com/es/supervision/", "0.7"),
         ("https://www.fransdata.com/projects/", "0.7"),
         ("https://www.fransdata.com/es/projects/", "0.7"),
+        ("https://www.fransdata.com/teaching/", "0.7"),
+        ("https://www.fransdata.com/docencia/", "0.7"),
     ]
     for paper in publications:
         urls.extend(
@@ -912,7 +914,7 @@ def update_public_pages(snapshot: dict) -> None:
         text = replace_citations_chart(text, render_citations_chart(snapshot.get("cites_per_year", {}), language))
         path.write_text(text, encoding="utf-8")
 
-    for relative in ("supervision/index.html", "projects/index.html", "es/supervision/index.html", "es/projects/index.html"):
+    for relative in ("supervision/index.html", "projects/index.html", "es/supervision/index.html", "es/projects/index.html", "teaching/index.html", "docencia/index.html"):
         path = ROOT / relative
         text = path.read_text(encoding="utf-8")
         text = re.sub(
