@@ -49,3 +49,5 @@ details summary{cursor:pointer;color:var(--teal)}
 .quiz .opts button.sel.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
 .quiz .opts button.sel.bad{background:var(--warn);color:#fff;border-color:var(--warn)}
 footer{max-width:980px;margin:0 auto;padding:0 16px 40px;color:var(--mut);font-size:13px}
+
+.ex .qtag{float:right;font-size:12px;font-weight:600;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:2px 10px;margin-left:8px}

@@ -16,7 +16,7 @@ The repository must be public for free GitHub Pages on a standard GitHub Free ac
 
 ## Teaching materials
 
-The public teaching catalogue is available at `/docencia/` (Spanish) and `/teaching/` (English). The CESTE EWNS course lives at `/ewns/`: four exercise sessions and four lecture-slide PDFs (signal, jamming, deception and protection), all inside encrypted HTML wrappers. The existing course username and password unlock both exercises and slides; credentials and plaintext PDFs are never committed. The encrypted pages keep `noindex,nofollow`.
+The public teaching catalogue is available at `/docencia/` (Spanish) and `/teaching/` (English). The CESTE EWNS course lives at `/ewns/`: four sessions with five interactive exercises each (20 total) and four lecture-slide PDFs (signal, jamming, deception and protection), all inside encrypted HTML wrappers. Exercise numbers correspond to the questions in each session's slide deck. The existing course username and password unlock both exercises and slides; credentials and plaintext PDFs are never committed. The encrypted pages keep `noindex,nofollow`.
 
 To refresh the course from the local `05_EWNS` directory:
 
