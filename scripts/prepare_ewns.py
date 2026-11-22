@@ -22,15 +22,16 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 ROOT = Path(__file__).resolve().parents[1]
 SLIDES = (
     ("01_senal.pdf", "La señal GNSS y por qué es frágil"),
-    ("02_ataques.pdf", "Perturbar y engañar"),
-    ("03_defensa.pdf", "Detectar y defender"),
+    ("02_jamming.pdf", "Perturbar la señal GNSS"),
+    ("03_engano.pdf", "Engañar la señal GNSS"),
+    ("04_proteccion.pdf", "Proteger el receptor GNSS"),
 )
 PARAMETERS = re.compile(r'const SALT="([^"]+)",IV="([^"]+)",CT="([^"]+)",IT=(\d+);')
 
 
 def prepare(source: Path, username: str, password: str, destination: Path) -> None:
     published = source / "04_web_interactiva" / "publicar"
-    wrappers = {name: (published / name).read_text() for name in ("index.html", "s1.html", "s2.html", "s3.html")}
+    wrappers = {name: (published / name).read_text() for name in ("index.html", "s1.html", "s2.html", "s3.html", "s4.html")}
     parameters = {name: PARAMETERS.search(page) for name, page in wrappers.items()}
     if not all(parameters.values()):
         raise ValueError("Expected encrypted wrappers in publicar/; refusing to copy unencrypted pages")

@@ -30,7 +30,7 @@ class EncryptedCourseTests(unittest.TestCase):
             ("ceste:" + self.password).encode()
         )
         payload = json.dumps({"html": "<main>Private course content</main>", "js": ""}).encode()
-        for index, name in enumerate(("index.html", "s1.html", "s2.html", "s3.html")):
+        for index, name in enumerate(("index.html", "s1.html", "s2.html", "s3.html", "s4.html")):
             iv = index.to_bytes(12, "big")
             ciphertext = AESGCM(self.key).encrypt(iv, payload, None)
             encode = lambda value: base64.b64encode(value).decode()
@@ -44,7 +44,9 @@ class EncryptedCourseTests(unittest.TestCase):
 
     def test_all_pages_and_slides_remain_encrypted(self):
         prepare(self.source, "CESTE", self.password, self.output)
-        self.assertEqual(len(list(self.output.iterdir())), 8)
+        self.assertEqual(len(list(self.output.iterdir())), 10)
+        self.assertTrue((self.output / "s4.html").is_file())
+        self.assertTrue((self.output / "teoria-4.html").is_file())
         for path in self.output.glob("*.html"):
             text = path.read_text()
             self.assertNotIn("Private course content", text)
@@ -60,10 +62,11 @@ class EncryptedCourseTests(unittest.TestCase):
                 encoded_pdf = base64.b64encode((self.source / "01_teoria" / filename).read_bytes()).decode()
                 self.assertIn(encoded_pdf, payload["js"])
                 self.assertIn('download="' + filename + '"', payload["html"])
+                self.assertIn(f'href="s{number}.html"', payload["html"])
             else:
                 self.assertIn("Private course content", payload["html"])
                 if path.name == "index.html":
-                    self.assertIn("teoria-3.html", payload["html"])
+                    self.assertIn("teoria-4.html", payload["html"])
         self.assertFalse(list(self.output.glob("*.pdf")))
 
     def test_wrong_password_does_not_publish_anything(self):

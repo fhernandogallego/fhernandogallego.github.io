@@ -16,7 +16,7 @@ The repository must be public for free GitHub Pages on a standard GitHub Free ac
 
 ## Teaching materials
 
-The public teaching catalogue is available at `/docencia/` (Spanish) and `/teaching/` (English). The CESTE EWNS course lives at `/ewns/`: three exercise sessions and three lecture-slide PDFs, all inside encrypted HTML wrappers. The existing course username and password unlock both exercises and slides; credentials and plaintext PDFs are never committed. The encrypted pages keep `noindex,nofollow`.
+The public teaching catalogue is available at `/docencia/` (Spanish) and `/teaching/` (English). The CESTE EWNS course lives at `/ewns/`: four exercise sessions and four lecture-slide PDFs (signal, jamming, deception and protection), all inside encrypted HTML wrappers. The existing course username and password unlock both exercises and slides; credentials and plaintext PDFs are never committed. The encrypted pages keep `noindex,nofollow`.
 
 To refresh the course from the local `05_EWNS` directory:
 
@@ -25,7 +25,7 @@ python3 -m pip install cryptography
 python3 scripts/prepare_ewns.py /absolute/path/to/05_EWNS --user ceste
 ```
 
-Enter the existing password when prompted. The script verifies and decrypts only the four wrappers in `04_web_interactiva/publicar/`, adds the three current PDFs from `01_teoria/` inside encrypted wrappers, and writes only encrypted pages plus `style.css` to `ewns/`. It does not modify the source directory. To change credentials, regenerate `publicar/` with the source project's `encrypt.py` first, then rerun this command with the new credentials. Never copy the full course source directory into this public repository. GitHub Pages serves the encrypted files publicly; encryption prevents reading the content without the key, but offline password guessing remains possible and recipients can save decrypted documents.
+Enter the existing password when prompted. The script verifies and decrypts only the five wrappers in `04_web_interactiva/publicar/`, adds the four current PDFs from `01_teoria/` inside encrypted wrappers, and writes only encrypted pages plus `style.css` to `ewns/`. It does not modify the source directory. To change credentials, regenerate `publicar/` with the source project's `encrypt.py` first, then rerun this command with the new credentials. Never copy the full course source directory into this public repository. GitHub Pages serves the encrypted files publicly; encryption prevents reading the content without the key, but offline password guessing remains possible and recipients can save decrypted documents.
 
 ## Daily Google Scholar update
 
