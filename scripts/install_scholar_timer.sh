@@ -16,7 +16,7 @@ After=network-online.target
 [Service]
 Type=oneshot
 User=root
-WorkingDirectory="$repository_root"
+WorkingDirectory=$repository_root
 Environment="PATH=$repository_root/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 Environment=GIT_TERMINAL_PROMPT=0
 Environment="GIT_SSH_COMMAND=/usr/bin/ssh -i /root/.ssh/fransdata_pages -o IdentitiesOnly=yes -o BatchMode=yes"
