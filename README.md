@@ -42,6 +42,8 @@ It performs the following tasks:
 
 When the Scholar workflow finishes, `.github/workflows/deploy-pages.yml` publishes the resulting repository state. It also deploys after ordinary pushes to `main`.
 
+Pages deployment uses the upload step's exact artifact ID through GitHub's deployment API, avoiding the artifact SDK's name lookup. The deployment script verifies that the artifact belongs to the current run, retains OIDC authentication, waits for a successful deployment and cancels on timeout. Run its checks with `node --test .github/scripts/deploy-pages.test.cjs`.
+
 Google Scholar may occasionally block automated requests from shared GitHub Actions IP addresses. The scheduled workflow uses `--allow-stale`: HTTP 403 or 429, or a response missing the profile's metric table or publication rows (even with HTTP 200), produces a workflow warning and keeps the last valid snapshot, its update date and its history unchanged. Publication enrichment and rendering can still continue from the stored data. Without a valid stored snapshot, or for other errors (including invalid fetched metrics), the run still fails. Manual refreshes remain strict unless `--allow-stale` is supplied. If blocks persist, the existing server bot can publish its snapshot using the import command below.
 
 A successful workflow run does not guarantee fresh Scholar data: check the warning and the snapshot's `updated_at` timestamp. The website labels this date as the last successful update. For persistent GitHub runner blocks, refresh from a machine that can access Scholar or import a current snapshot from the existing server bot; rendering or redeploying stored data cannot refresh the citation counts.
