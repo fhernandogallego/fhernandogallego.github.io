@@ -1,15 +1,8 @@
 {
-  "updated_at": "2026-11-24T09:01:34+00:00",
+  "updated_at": "2026-11-24T10:00:07",
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=89e5aoQAAAAJ",
   "name": "Francisco Hernando-Gallego",
-  "total_citations": 323,
-  "citations_5y": 281,
-  "hindex": 8,
-  "hindex5y": 8,
-  "i10index": 7,
-  "i10index5y": 7,
-  "citations_current_year": 145,
   "cites_per_year": {
     "2016": 1,
     "2017": 3,
@@ -64,7 +57,7 @@
       "open_access_url": "https://www.mdpi.com/2073-8994/18/2/343/pdf?version=1771043196"
     },
     {
-      "title": "Use of Machine Learning models as surrogate models for finding regions of structural properties of MOFs with high hydrogen storage capacities at room temperature and moderate pressures",
+      "title": "Use of Machine Learning models as surrogate models for finding regions of structural properties of MOFs with high hydrogen storage capacities at room temperature and moderate …",
       "authors": "A. Granja-DelRío and F. Hernando-Galego and I. Cabria",
       "year": "2026",
       "venue": "Chemical Physics, 113209, 2026",
@@ -186,13 +179,19 @@
     },
     {
       "title": "When Can a Molecular-Dynamics Simulation Stop?",
-      "authors": "F Hernando-Gallego and D García-Santos and D Vasilev-Vasilev and ...",
+      "authors": "F. Hernando-Galego and Diego García-Santos and Dimitar Vasilev-Vasilev and Alberto Gómez-Gómez and Alfonso Campo-Camacho",
       "year": "2026",
       "venue": "",
       "citations": 0,
       "author_pub_id": "89e5aoQAAAAJ:TQgYirikUcIC",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3ATQgYirikUcIC",
-      "slug": "2026-when-can-a-molecular-dynamics-simulation-stop-7fc14ae8"
+      "slug": "2026-when-can-a-molecular-dynamics-simulation-stop-7fc14ae8",
+      "doi": "10.26434/chemrxiv.15011953/v1",
+      "publisher": "American Chemical Society (ACS)",
+      "published": "2026-11-10",
+      "type": "posted-content",
+      "openalex_id": "https://openalex.org/W7225808847",
+      "open_access_url": "https://chemrxiv.org/doi/pdf/10.26434/chemrxiv.15011953/v1"
     },
     {
       "title": "Retroalimentación formativa con IA generativa en programación: diseño del protocolo y evaluación de resultados",
@@ -211,13 +210,19 @@
     },
     {
       "title": "Reliability of Short Molecular Dynamics Runs as Screening Labels: Noise Ceilings, Time Dependence and Adaptive Replicate Allocation",
-      "authors": "F Hernando-Gallego and D Vasilev-Vasilev and D García-Santos and ...",
+      "authors": "F. Hernando-Galego and Dimitar Vasilev-Vasilev and Diego García-Santos and Alfonso Campo-Camacho and Alberto Gómez-Gómez",
       "year": "2026",
       "venue": "",
       "citations": 0,
       "author_pub_id": "89e5aoQAAAAJ:HDshCWvjkbEC",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AHDshCWvjkbEC",
-      "slug": "2026-reliability-of-short-molecular-dynamics-runs-as-screening-labels-noise-c-7389fa22"
+      "slug": "2026-reliability-of-short-molecular-dynamics-runs-as-screening-labels-noise-c-7389fa22",
+      "doi": "10.26434/chemrxiv.15010895/v1",
+      "publisher": "American Chemical Society (ACS)",
+      "published": "2026-10-22",
+      "type": "posted-content",
+      "openalex_id": "https://openalex.org/W7223178878",
+      "open_access_url": "https://chemrxiv.org/doi/pdf/10.26434/chemrxiv.15010895/v2"
     },
     {
       "title": "HDAWN-HRDAE: A hybrid framework for the music genre classification with the dual temporal and frequency feature modeling",
@@ -716,5 +721,12 @@
       "url": "https://scholar.google.com/scholar?cluster=2847804695877589008&hl=en&oi=scholarr",
       "slug": "undated-orthogonal-multi-sequences-for-efficiently-jamming-the-umts-signal-ad1ef654"
     }
-  ]
+  ],
+  "total_citations": 323,
+  "citations_5y": 281,
+  "hindex": 8,
+  "hindex5y": 8,
+  "i10index": 7,
+  "i10index5y": 7,
+  "citations_current_year": 145
 }
