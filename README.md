@@ -29,9 +29,18 @@ Enter the existing password when prompted. The script verifies and decrypts only
 
 ## Daily Google Scholar update
 
-The workflow [`.github/workflows/update-scholar.yml`](.github/workflows/update-scholar.yml) runs every day at 06:17 UTC and can also be launched manually from **Actions → Update Google Scholar metrics → Run workflow**.
+Use a separate systemd timer on PAR8 to publish the existing bot's `/root/crytodatarun/scholar_state.json` once a day at 12:17 Europe/Madrid. The GitHub workflow [`.github/workflows/update-scholar.yml`](.github/workflows/update-scholar.yml) is now a manual fallback (**Actions → Update Google Scholar metrics → Run workflow**); its scheduled Scholar requests were blocked with HTTP 403/429.
 
-It performs the following tasks:
+After setting up `/root/fransdata-web`, its dedicated repository deploy key and `.venv`, enable the timer on PAR8 with:
+
+```bash
+sudo git -C /root/fransdata-web pull --ff-only origin main
+sudo bash /root/fransdata-web/scripts/install_scholar_timer.sh
+```
+
+The installer validates the configuration before enabling `fransdata-scholar.timer` and only creates the matching publisher service and timer. It does not change the bot, its environment or Supervisor. Inspect the next run with `sudo systemctl list-timers fransdata-scholar.timer --no-pager` and publication logs with `sudo journalctl -u fransdata-scholar.service -n 40 --no-pager`. A missed daily run is caught up when the timer becomes active again. Use `bash scripts/install_scholar_timer.sh --dry-run` to inspect the generated units without installing them. Disable only this publisher with `sudo systemctl disable --now fransdata-scholar.timer`.
+
+The manual GitHub workflow performs the following tasks:
 
 1. Reads the public Scholar profile `89e5aoQAAAAJ`.
 2. Downloads the complete publication list and all available citation, h-index and i10-index metrics, including five-year values. Any new work appearing on the profile is therefore added automatically.
@@ -44,7 +53,7 @@ When the Scholar workflow finishes, `.github/workflows/deploy-pages.yml` publish
 
 Pages deployment uses the upload step's exact artifact ID through GitHub's deployment API, avoiding the artifact SDK's name lookup. The deployment script verifies that the artifact belongs to the current run, retains OIDC authentication, waits for a successful deployment and cancels on timeout. Run its checks with `node --test .github/scripts/deploy-pages.test.cjs`.
 
-Google Scholar may occasionally block automated requests from shared GitHub Actions IP addresses. The scheduled workflow uses `--allow-stale`: HTTP 403 or 429, or a response missing the profile's metric table or publication rows (even with HTTP 200), produces a workflow warning and keeps the last valid snapshot, its update date and its history unchanged. Publication enrichment and rendering can still continue from the stored data. Without a valid stored snapshot, or for other errors (including invalid fetched metrics), the run still fails. Manual refreshes remain strict unless `--allow-stale` is supplied. If blocks persist, the existing server bot can publish its snapshot using the import command below.
+Google Scholar may occasionally block automated requests from shared GitHub Actions IP addresses. The manual GitHub workflow uses `--allow-stale`: HTTP 403 or 429, or a response missing the profile's metric table or publication rows (even with HTTP 200), produces a workflow warning and keeps the last valid snapshot, its update date and its history unchanged. Publication enrichment and rendering can still continue from the stored data. Without a valid stored snapshot, or for other errors (including invalid fetched metrics), the run still fails. Manual refreshes remain strict unless `--allow-stale` is supplied. If blocks persist, the existing server bot can publish its snapshot using the import command below.
 
 A successful workflow run does not guarantee fresh Scholar data: check the warning and the snapshot's `updated_at` timestamp. The website labels this date as the last successful update. For persistent GitHub runner blocks, refresh from a machine that can access Scholar or import a current snapshot from the existing server bot; rendering or redeploying stored data cannot refresh the citation counts.
 
