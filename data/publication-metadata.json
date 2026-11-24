@@ -820,5 +820,59 @@
     "openalex_checked": true,
     "openalex_id": "https://openalex.org/W7221567829",
     "open_access_url": "https://doi.org/10.3390/math14203679"
+  },
+  "2026-when-can-a-molecular-dynamics-simulation-stop-7fc14ae8": {
+    "status": "matched",
+    "source": "Crossref",
+    "match_score": 1.0,
+    "doi": "10.26434/chemrxiv.15011953/v1",
+    "authors": [
+      "F. Hernando-Galego",
+      "Diego García-Santos",
+      "Dimitar Vasilev-Vasilev",
+      "Alberto Gómez-Gómez",
+      "Alfonso Campo-Camacho"
+    ],
+    "journal": "",
+    "issns": [],
+    "publisher": "American Chemical Society (ACS)",
+    "published": "2026-11-10",
+    "volume": "",
+    "issue": "",
+    "pages": "",
+    "type": "posted-content",
+    "url": "https://doi.org/10.26434/chemrxiv.15011953/v1",
+    "abstract_available": true,
+    "updated_at": "2026-11-24T09:02:19+00:00",
+    "openalex_checked": true,
+    "openalex_id": "https://openalex.org/W7225808847",
+    "open_access_url": "https://chemrxiv.org/doi/pdf/10.26434/chemrxiv.15011953/v1"
+  },
+  "2026-reliability-of-short-molecular-dynamics-runs-as-screening-labels-noise-c-7389fa22": {
+    "status": "matched",
+    "source": "Crossref",
+    "match_score": 1.0,
+    "doi": "10.26434/chemrxiv.15010895/v1",
+    "authors": [
+      "F. Hernando-Galego",
+      "Dimitar Vasilev-Vasilev",
+      "Diego García-Santos",
+      "Alfonso Campo-Camacho",
+      "Alberto Gómez-Gómez"
+    ],
+    "journal": "",
+    "issns": [],
+    "publisher": "American Chemical Society (ACS)",
+    "published": "2026-10-22",
+    "volume": "",
+    "issue": "",
+    "pages": "",
+    "type": "posted-content",
+    "url": "https://doi.org/10.26434/chemrxiv.15010895/v1",
+    "abstract_available": true,
+    "updated_at": "2026-11-24T09:02:23+00:00",
+    "openalex_checked": true,
+    "openalex_id": "https://openalex.org/W7223178878",
+    "open_access_url": "https://chemrxiv.org/doi/pdf/10.26434/chemrxiv.15010895/v2"
   }
 }
