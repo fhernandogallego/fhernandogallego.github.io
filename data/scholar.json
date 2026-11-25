@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-24T12:00:07",
+  "updated_at": "2026-11-25T12:00:05",
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=89e5aoQAAAAJ",
   "name": "Francisco Hernando-Gallego",
@@ -14,7 +14,7 @@
     "2023": 17,
     "2024": 17,
     "2025": 64,
-    "2026": 145
+    "2026": 146
   },
   "publications": [
     {
@@ -322,7 +322,7 @@
       "authors": "Pardis Sadatian Moghaddam and Ali Vaziri and Sarvenaz Sadat Khatami and F. Hernando-Galego and Diego Martín",
       "year": "2025",
       "venue": "Future Internet 17 (6), 258, 2025",
-      "citations": 40,
+      "citations": 41,
       "author_pub_id": "89e5aoQAAAAJ:_FxGoFyzp5QC",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A_FxGoFyzp5QC",
       "slug": "2025-generative-adversarial-and-transformer-network-synergy-for-robust-intrus-f800f451",
@@ -722,11 +722,11 @@
       "slug": "undated-orthogonal-multi-sequences-for-efficiently-jamming-the-umts-signal-ad1ef654"
     }
   ],
-  "total_citations": 323,
+  "total_citations": 324,
   "citations_5y": 281,
   "hindex": 8,
   "hindex5y": 8,
   "i10index": 7,
   "i10index5y": 7,
-  "citations_current_year": 145
+  "citations_current_year": 146
 }
