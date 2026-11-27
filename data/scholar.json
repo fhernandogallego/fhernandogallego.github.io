@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-26T12:00:06",
+  "updated_at": "2026-11-27T12:00:07",
   "source": "Google Scholar",
   "profile": "https://scholar.google.com/citations?user=89e5aoQAAAAJ",
   "name": "Francisco Hernando-Gallego",
@@ -14,7 +14,7 @@
     "2023": 17,
     "2024": 17,
     "2025": 64,
-    "2026": 146
+    "2026": 147
   },
   "publications": [
     {
@@ -322,7 +322,7 @@
       "authors": "Pardis Sadatian Moghaddam and Ali Vaziri and Sarvenaz Sadat Khatami and F. Hernando-Galego and Diego Martín",
       "year": "2025",
       "venue": "Future Internet 17 (6), 258, 2025",
-      "citations": 41,
+      "citations": 42,
       "author_pub_id": "89e5aoQAAAAJ:_FxGoFyzp5QC",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3A_FxGoFyzp5QC",
       "slug": "2025-generative-adversarial-and-transformer-network-synergy-for-robust-intrus-f800f451",
@@ -342,7 +342,7 @@
       "authors": "Mohammad Mehdi Sharifi Nevisi and Mehrdad Shoeibi and F. Hernando-Galego and Diego Martín and Sarvenaz Sadat Khatami",
       "year": "2025",
       "venue": "Energies 18 (10), 2435, 2025",
-      "citations": 25,
+      "citations": 26,
       "author_pub_id": "89e5aoQAAAAJ:WF5omc3nYNoC",
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=89e5aoQAAAAJ&citation_for_view=89e5aoQAAAAJ%3AWF5omc3nYNoC",
       "slug": "2025-an-evolutionary-deep-reinforcement-learning-based-framework-for-efficien-a8fe084c",
@@ -722,11 +722,11 @@
       "slug": "undated-orthogonal-multi-sequences-for-efficiently-jamming-the-umts-signal-ad1ef654"
     }
   ],
-  "total_citations": 324,
+  "total_citations": 326,
   "citations_5y": 281,
   "hindex": 8,
   "hindex5y": 8,
   "i10index": 7,
   "i10index5y": 7,
-  "citations_current_year": 146
+  "citations_current_year": 147
 }
