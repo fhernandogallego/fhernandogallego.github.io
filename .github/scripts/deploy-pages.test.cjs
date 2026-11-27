@@ -47,6 +47,52 @@ test('rejects expired artifacts', async () => {
   await assert.rejects(deploy(f.api, '42', options), /unavailable/);
   assert.equal(f.calls.length, 1);
 });
+test('waits for an uploaded artifact to become visible before deploying', async () => {
+  const f = fixture();
+  const request = f.api.github.request;
+  let lookups = 0;
+  const sleeps = [];
+  f.api.github.request = async (route, parameters) => {
+    if (route.includes('/actions/artifacts/') && ++lookups < 3) {
+      throw Object.assign(new Error('Not Found'), { status: 404 });
+    }
+    return request(route, parameters);
+  };
+  await deploy(f.api, '42', { ...options, sleep: async ms => sleeps.push(ms) });
+  assert.equal(lookups, 3);
+  assert.deepEqual(sleeps, [5000, 5000, 5000]);
+  assert.equal(f.calls[1].parameters.artifact_id, 42);
+  assert.equal(f.outputs.page_url, 'https://example.com/');
+});
+test('bounds artifact visibility retries and never starts a deployment on failure', async () => {
+  const f = fixture();
+  let lookups = 0;
+  let sleeps = 0;
+  f.api.github.request = async route => {
+    assert.ok(route.includes('/actions/artifacts/'));
+    lookups++;
+    throw Object.assign(new Error('Not Found'), { status: 404 });
+  };
+  await assert.rejects(deploy(f.api, '42', {
+    ...options, artifactAttempts: 3, sleep: async () => { sleeps++; }
+  }), /Not Found/);
+  assert.equal(lookups, 3);
+  assert.equal(sleeps, 2);
+  assert.deepEqual(f.masked, []);
+  assert.deepEqual(f.outputs, {});
+});
+test('does not retry permission errors', async () => {
+  const f = fixture();
+  let lookups = 0;
+  f.api.github.request = async () => {
+    lookups++;
+    throw Object.assign(new Error('Forbidden'), { status: 403 });
+  };
+  await assert.rejects(deploy(f.api, '42', {
+    ...options, sleep: async () => assert.fail('Unexpected retry')
+  }), /Forbidden/);
+  assert.equal(lookups, 1);
+});
 test('fails on deployment errors without reporting a URL', async () => {
   const f = fixture({ statuses: ['deployment_content_failed'] });
   await assert.rejects(deploy(f.api, '42', options), /deployment_content_failed/);
